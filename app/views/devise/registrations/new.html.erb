@@ -1,0 +1,107 @@
+<style>
+
+body {
+  background-color: #000000;
+}
+
+.login-text {
+  color: #ABABAB;
+}
+
+.control-label {
+  color: white;
+}
+
+a {
+  color: #ABABAB;
+}
+</style>
+
+<div class="container">
+
+<h2 class="login-text">Sign up</h2>
+
+<hr style="border-color: #3B5998;">
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
+  <%= devise_error_messages! %>
+<div class="col-sm-6">
+ 
+<div class="form-group">
+    <%= f.label :first_name, :class => 'control-label' %>
+    
+    <div style="width: 80%;">
+    <%= f.text_field :first_name, :class => 'form-control', autofocus: true %>
+  </div>
+  </div>
+  <br>  
+
+
+<div class="form-group">
+    <%= f.label :last_name, :class => 'control-label' %>
+    
+    <div style="width: 80%;">
+    <%= f.text_field :last_name, :class => 'form-control', autofocus: true %>
+  </div>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= f.label :zipcode, :class => 'control-label' %>
+    
+    <div style="width: 80%;">
+    <%= f.number_field :zipcode, :class => 'form-control', autofocus: true %>
+  </div>
+  </div>
+  <br>
+</div> <!-- col-sm-6 -->
+
+  <div class="col-sm-6">
+     <div class="form-group">
+    <%= f.label :email, :class => 'control-label' %>
+    
+    <div style="width: 80%;">
+    <%= f.email_field :email, :class => 'form-control', autofocus: true %>
+  </div>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= f.label :password, :class => 'control-label' %>
+    
+    <div style="width: 80%;">
+    <%= f.password_field :password, :class => 'form-control', autocomplete: "off" %>
+  </div>
+  </div>
+  <br>
+
+
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, :class => 'control-label' %>
+      <% if @minimum_password_length %>
+    <em class="login-text">(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+    <div style="width: 80%;">
+    <%= f.password_field :password_confirmation, :class => 'form-control', autocomplete: "off" %>
+  </div>
+  </div>
+
+  <%= f.label :avatar, 'Profile Picture', :class => 'control-label' %>
+  <%= f.file_field :avatar, :class => 'login-text' %>
+<br>
+
+  
+  <div class="actions">
+    <%= f.submit "Sign up", :class => 'btn btn-danger' %>
+  </div>
+
+<% end %>
+
+
+<br>
+
+<%= render "devise/shared/links" %>
+</div> <!-- col-sm-6 -->
+
+</div>

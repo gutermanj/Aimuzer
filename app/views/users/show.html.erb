@@ -1,0 +1,119 @@
+<html>
+<head>
+
+</head>
+
+<style type="text/css">
+
+p, div {
+	color: black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: black;
+}
+
+.left-info-border {
+	border-left-style: solid;
+	border-width: 2px;
+	padding-left: 10px;
+	border-color: #660000;
+}
+
+.overeverything {
+	position: fixed;
+	z-index: 20;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 3px;
+	border-color: lightgray;
+	padding: 10px;
+}
+
+.box-shadow--2dp {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12)
+}
+.box-shadow--3dp {
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12)
+}
+.box-shadow--4dp {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2)
+}
+.box-shadow--6dp {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2)
+}
+.box-shadow--8dp {
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2)
+}
+.box-shadow--16dp {
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2)
+}
+
+.avatar-border {
+	border-style: solid;
+	border-width: 1px;
+	padding: 0px;
+	padding: 3px;
+	width: 96%;
+	background-color: lightgray;
+	border-color: darkgray;
+}
+
+@media only screen and (max-width: 1199px) {
+.overeverything {
+        display: none;
+}
+
+}
+
+</style>
+
+<body>
+	<div class="container">
+<!-- DYNAMIC PROFILE -->
+		<div class="row">
+			<div class="col-lg-2">	
+				<div class="avatar-border">	
+					<%= image_tag @user.avatar.url, :style => 'width: 150px; height: 150px;' %> <!-- @user.avatar.url || @user.avatar.url(:thumb) -->
+				</div>
+
+			</div> <!-- col-lg-2 -->
+
+			<div class="col-lg-7">
+
+				<div class="left-info-border">
+				<h3><%= @user.first_name %> <%= @user.last_name %></h3>
+
+				<h5><i class="fa fa-bullseye"></i> <%= @zipcode[:city] %>, <%= @zipcode[:state_code] %></h5>
+				</div> <!-- left-info-border -->
+
+				<span>Followers</span><span style="font-size: 20px; margin-left: 10px;"><%= @randfollowers %></span><br>
+
+				<i class="fa fa-heart-o"></i><a href="#"><span>  Favorite genre</span></a><br>
+
+				<i class="fa fa-tags"></i> <span>Total Tags | <a href="#"><%= @randtags %></a></span>
+
+				<hr style="border-color: darkgray; width: 120%; margin-left: -30%;">
+
+			</div> <!-- col-lg-4 -->
+
+
+				<!-- =========== FIXED SIDE BAR =========== -->
+			<div class="col-lg-3">
+				<div class="overeverything box-shadow--4dp">
+					<h3 style="text-align: center;">Recent Tags</h3>
+					<hr style="width: 225px; border-color: darkgray;">
+					<h2>BLAHBLAHBLAH</h2><h2>BLAHBLAHBLAH</h2><h2>BLAHBLAHBLAH</h2><h2>BLAHBLAHBLAH</h2>
+				</div> <!-- over everything -->
+			</div> <!-- col-lg-3 -->
+		</div> <!-- row -->
+
+				<!-- =========== FIXED SIDE BAR =========== -->
+
+
+		<div class="row">
+			<h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1>
+		</div> <!-- row -->
+	</div> <!-- container -->
+</body>
+</html>

@@ -1,0 +1,238 @@
+<html>
+
+<style type="text/css">
+
+hr {
+	border-color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato', sans-serif;
+}
+p, div {
+    font-family: 'Lato', sans-serif;
+   	
+}
+.signed-in-body {
+	background-color: #000000;
+		background-size: 100% 100%;
+   		background-repeat: no-repeat;
+		background-attachment: fixed;
+}
+.not-signed-in-body {
+	background-color: #000000;
+		background-size: 100% 100%;
+   		background-repeat: no-repeat;
+		background-attachment: fixed;
+}
+
+.first-buttons {
+	margin-left: 60%;
+	margin-top: 10%;
+}
+
+.intro-info {
+	opacity: 0.85;
+    filter: alpha(opacity=85);
+    background-color: black;
+    height: 350px;
+    padding-left: 20px;
+    padding-top: 10px;
+    color: white;
+    border-style: solid;
+    border-color: darkgray;
+    border-width: 1px;
+}
+
+.indent-1 {
+	margin-left: 50px;
+}
+
+.indent-2 {
+    color: black;
+}
+
+.first-half {
+	color: #ABABAB;
+	font-size: 40px;
+}
+
+.second-half {
+	color: #3B5998;
+	font-size: 30px;
+}
+
+.content-background {
+	background-color: #1D1D1D;
+	border-radius: 3px;
+	color: white;
+	height: 650px;
+}
+
+.fake-player {
+	border-style: solid;
+	border-color: #3D3D3D;
+	padding: 15px;
+	background-color: #F1F1F1;
+	height: 100px;
+	border-width: 1px;
+	color: #ABABAB;
+}
+
+.play-btn {
+	border-radius: 30px;
+	border-style: solid;
+	width: 60px;
+	padding: 10px;
+	font-size: 35px;
+	color: #3D3D3D;
+	padding-left: 12px;
+	border-width: 2px;
+}
+
+.play-btn:hover {
+	border-radius: 30px;
+	border-style: solid;
+	width: 60px;
+	padding: 10px;
+	font-size: 35px;
+	color: #FFFFFF;
+	padding-left: 12px;
+	border-width: 2px;
+	background-color: #3D3D3D;
+}
+
+
+
+</style>
+
+
+<script type="text/javascript">
+ $(document).ready(function(){
+  $("#jquery_jplayer_1").jPlayer({
+   ready: function () {
+    $(this).jPlayer("setMedia", {
+     m4a: "/media/mysound.mp4",
+     oga: "/media/mysound.ogg"
+    });
+   },
+   swfPath: "/js",
+   supplied: "m4a, oga"
+  });
+ });
+</script>
+
+
+
+
+
+<!-- ============ IF NO ONE IS SIGNED IN ===========-->
+
+
+<% if current_user == nil %>
+
+<body class="not-signed-in-body">
+	<div class="container not-signed-in-body">
+		<div class="row">
+			<div class="col-sm-6">
+				<span class="first-half">Aim</span><span class="second-half">uzer</span>
+				<br>
+					<span style="color: #ABABAB;">Let's Discover, Together</span>
+						
+			</div> <!-- col-lg-6 -->
+
+			<div class="col-sm-6">
+						<div class="first-buttons">
+						<%= link_to 'Register', new_user_registration_path, class: 'btn btn-default btn-md' %>
+
+						<%= link_to 'Sign In', new_user_session_path, class: 'btn btn-default btn-md', :style => 'margin-left: 25px; width: 90px;' %>
+						</div> <!-- first buttons -->
+			</div> <!-- col-sm-6 -->
+
+		</div> <!-- row -->
+						<hr style="border-color: #3B5998;">
+<!-- ======== Top portion with log buttons and header =========-->
+
+	</div><!-- container not sign in body -->	
+
+	
+
+
+
+
+
+
+					
+</body>
+
+<!-- ============ IF NO ONE IS SIGNED IN ===========-->
+
+<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+
+<!-- ============ IF SOMEONE IS SIGNED IN ===========-->
+
+<% else %>
+
+
+
+<body class="signed-in-body">
+
+	<div class="container">
+		<div class="row">
+			 <div class="col-sm-4">
+					<span class="first-half">Aim</span><span class="second-half">uzer</span>
+					<br>
+						<span style="color: #ABABAB;">Let's Discover, Together</span>
+							
+				</div> <!-- col-lg-4 -->
+
+			<div class="col-sm-8">
+
+			</div>
+			
+		</div> <!-- row -->
+			<hr style="border-color: #3B5998;">
+		<div class="row">
+			<div class="col-sm-8 content-background">
+				<div>
+					<h3 class="fake-player"><i class="glyphicon glyphicon-play play-btn" ></i></h3>
+				</div>
+
+				<div>
+					<h3 class="fake-player"><i class="glyphicon glyphicon-play play-btn" ></i></h3>
+				</div>
+
+				<div>
+					<h3 class="fake-player"><i class="glyphicon glyphicon-play play-btn" ></i></h3>
+				</div>
+
+				<div>
+					<h3 class="fake-player"><i class="glyphicon glyphicon-play play-btn" ></i></h3>
+				</div>
+			</div> <!-- col-sm-8 -->
+
+
+			<div class="col-sm-4">
+
+			</div> <!-- col-sm-4 -->
+
+
+		</div> <!-- row -->
+
+
+	</div> <!-- container -->
+</body>
+
+<% end %>
+
+<!-- ============ IF SOMEONE IS SIGNED IN ===========-->
+
+</html>
+
+
+
+
+
+
+
+
