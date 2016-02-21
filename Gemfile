@@ -12,7 +12,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'soundcloud'
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'carrierwave'
+gem "rmagick"
+gem 'carrierwave-aws'
+gem 'fog'
 gem 'zip-codes'
 gem 'envyable'
 

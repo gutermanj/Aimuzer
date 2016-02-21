@@ -5,6 +5,10 @@
 
 <style type="text/css">
 
+body {
+	background-color: #E8E8EC;
+}
+
 p, div {
 	color: black;
 }
@@ -66,7 +70,63 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
+.audio-around {
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 4px;
+	padding-left: 0px;
+	padding-top: 0px;
+	height: 125px;
+	background-color: #F7F7FF;
+	background-image: url('../assets/song-background.jpg');
+	background-size: 100% 100%;
+	
+}
+
+.audio-widget {
+	width: 100%;
+	background-color: #3B5998;
+
+}
+
+.song-content {
+	padding-left: 10px;
+	color: white;
+}
+
+.follow-btn {
+	margin-right: 75px;
+	float: right;
+}
+
 </style>
+
+<script>
+$("audio").on("play", function(){
+    var _this = $(this);
+    $("audio").each(function(i,el){
+        if(!$(el).is(_this))
+            $(el).get(0).pause();
+    });
+});
+
+
+$(document).on('ready', function() {
+$("audio").on("play", function(){
+    var _this = $(this);
+    $("audio").each(function(i,el){
+        if(!$(el).is(_this))
+            $(el).get(0).pause();
+    });
+});
+});
+
+// This is here twice because in the rails app, switching from one page 
+// to another doesn't execute the document ready properly...
+</script>
+
+
+
 
 <body>
 	<div class="container">
@@ -74,7 +134,7 @@ h1, h2, h3, h4, h5, h6 {
 		<div class="row">
 			<div class="col-lg-2">	
 				<div class="avatar-border">	
-					<%= image_tag @user.avatar.url, :style => 'width: 150px; height: 150px;' %> <!-- @user.avatar.url || @user.avatar.url(:thumb) -->
+					<%= image_tag @user.avatar_url(:thumb) if @user.avatar? %>
 				</div>
 
 			</div> <!-- col-lg-2 -->
@@ -87,13 +147,18 @@ h1, h2, h3, h4, h5, h6 {
 				<h5><i class="fa fa-bullseye"></i> <%= @zipcode[:city] %>, <%= @zipcode[:state_code] %></h5>
 				</div> <!-- left-info-border -->
 
-				<span>Followers</span><span style="font-size: 20px; margin-left: 10px;"><%= @randfollowers %></span><br>
+				<section class="stats">
+      			<%= render 'layouts/stats' %>
+   				</section><br>
 
 				<i class="fa fa-heart-o"></i><a href="#"><span>  Favorite genre</span></a><br>
 
 				<i class="fa fa-tags"></i> <span>Total Tags | <a href="#"><%= @randtags %></a></span>
+				<%= render 'follow_form' if current_user %>
 
 				<hr style="border-color: darkgray; width: 120%; margin-left: -30%;">
+
+
 
 			</div> <!-- col-lg-4 -->
 
@@ -103,7 +168,7 @@ h1, h2, h3, h4, h5, h6 {
 				<div class="overeverything box-shadow--4dp">
 					<h3 style="text-align: center;">Recent Tags</h3>
 					<hr style="width: 225px; border-color: darkgray;">
-					<h2>BLAHBLAHBLAH</h2><h2>BLAHBLAHBLAH</h2><h2>BLAHBLAHBLAH</h2><h2>BLAHBLAHBLAH</h2>
+					
 				</div> <!-- over everything -->
 			</div> <!-- col-lg-3 -->
 		</div> <!-- row -->
@@ -112,7 +177,25 @@ h1, h2, h3, h4, h5, h6 {
 
 
 		<div class="row">
-			<h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1><h1>HAHAHAHHAHAHAHAH</h1>
+			<div class="col-sm-8">
+					<% @tracks.each do |x| %>
+					<div class="audio-around box-shadow--6dp">
+					<audio controls class="audio-widget">
+					  <source src="<%= x.track %>" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+
+					<div class="song-content">
+
+					<h4 style="color: white;"><b><%= x.title %></b></h4>
+					<h6 style="color: white;"><em><%= x.description %></em></h6>
+
+					</div><!-- song content -->
+					</div><!-- audio-around -->
+					<br><br>
+					<% end %>
+			</div> <!-- col-sm-8 -->
+				
 		</div> <!-- row -->
 	</div> <!-- container -->
 </body>

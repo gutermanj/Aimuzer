@@ -1,12 +1,18 @@
 class UsersController < ApplicationController
 
   	def show
-  		@user = User.find(params[:id])
+  		@user = User.find_by(id: params[:id])
   		@zipcode = ZipCodes.identify(@user.zipcode.to_s)
 
   		@randtags = rand(100)
 
   		@randfollowers = rand(1000)
+
+  		@track = Track.find_by(id: params[:user_id])
+
+  		@tracks = @user.tracks
+
+  		@data_id = 0
 
 	end
 
