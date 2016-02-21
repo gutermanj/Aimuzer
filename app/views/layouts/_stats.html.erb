@@ -1,16 +1,17 @@
 <% @user ||= current_user %>
 <div class="stats">
-  <a href="<%= following_user_path(@user) %>">
-    <strong id="following" class="stat">
-      <%= @user.following.count %>
-    </strong>
-    following
-  </a>
-  <br>
-  <a href="<%= followers_user_path(@user) %>">
+  <a href="#" style="color: black;" class="js-followers" data-user-id="<%= @user.id %>" data-toggle="modal" data-target="#GSCCModal">
     <strong id="followers" class="stat">
       <%= @user.followers.count %>
     </strong>
     followers
   </a>
+  <br>
+  <a href="#" style="color: black;" class="js-following">
+    <strong id="following" class="stat">
+      <%= @user.following.count %>
+    </strong>
+    following
+  </a>
+  
 </div>

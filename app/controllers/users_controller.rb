@@ -3,6 +3,9 @@ class UsersController < ApplicationController
   	def show
   		@user = User.find_by(id: params[:id])
   		@zipcode = ZipCodes.identify(@user.zipcode.to_s)
+  		@followers = @user.followers.all
+
+	
 
   		@randtags = rand(100)
 
@@ -21,6 +24,13 @@ class UsersController < ApplicationController
 
 	def create
 	  @user = User.create( user_params )
+	end
+
+	def followers
+		@user = User.find_by(id: params[:id])
+		@followers = @user.followers.all
+
+		render json: @followers
 	end
 
 	def destroy

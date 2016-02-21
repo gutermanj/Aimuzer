@@ -99,6 +99,15 @@ h1, h2, h3, h4, h5, h6 {
 	float: right;
 }
 
+.stats {
+	font-size: 17px;
+}
+
+.follower-name {
+	font-size: 20px;
+	
+}
+
 </style>
 
 <script>
@@ -149,12 +158,14 @@ $("audio").on("play", function(){
 
 				<section class="stats">
       			<%= render 'layouts/stats' %>
-   				</section><br>
+   				</section>
 
-				<i class="fa fa-heart-o"></i><a href="#"><span>  Favorite genre</span></a><br>
+				<i class="fa fa-heart-o fav-genre-up"></i><a href="#"><span>  Favorite genre</span></a><br>
 
 				<i class="fa fa-tags"></i> <span>Total Tags | <a href="#"><%= @randtags %></a></span>
+				<% if current_user.id != @user.id %>
 				<%= render 'follow_form' if current_user %>
+				<% end %>
 
 				<hr style="border-color: darkgray; width: 120%; margin-left: -30%;">
 
@@ -198,5 +209,29 @@ $("audio").on("play", function(){
 				
 		</div> <!-- row -->
 	</div> <!-- container -->
+
+	<!-- FOLLOWERS MODAL -->
+
+	<div id="GSCCModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Followers</h4>
+      </div>
+      <div class="modal-body js-followers-modal">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+	<!-- FOLLOWERS MODAL -->
+
+
+
 </body>
 </html>
