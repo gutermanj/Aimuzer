@@ -31,6 +31,13 @@ class UsersController < ApplicationController
 		render json: @followers
 	end
 
+	def following
+		@user = User.find_by(id: params[:id])
+		@following = @user.following.all
+
+		render json: @following
+	end
+
 	def destroy
 		@user.avatar = nil
 		@user.save

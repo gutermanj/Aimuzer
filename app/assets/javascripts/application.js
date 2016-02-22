@@ -27,6 +27,12 @@ $(document).on('ready', function () {
 		getFollowers(user_id);
 	}); // on click
 
+	$('.js-following').on('click', function() {
+		console.log('Requested Users Following.');
+		var user_id = $('.js-following').data('user-id');
+		getFollowing(user_id);
+	});
+
 }); // doc ready
 
 function getFollowers(user_id) {
@@ -72,6 +78,56 @@ function showFollowers(response) {
 	});
 		console.log(response);
 }
+
+
+
+function getFollowing(user_id) {
+	$.ajax({
+		url: `/users/${user_id}/following`,
+
+		data: {},
+
+		success: function(response) {
+			console.log(response);
+			showFollowing(response);
+		},
+
+		error: function() {
+			console.log('Something went wrong while grabbing the followers');
+		}
+	}); // ajax
+} // getFollowing
+
+function showFollowing(response) {
+	var following = response
+	following.forEach(function (following) {
+		var html = `
+			<div class="follower-item row">
+		<div class="col-sm-3">
+			<img src="${following.avatar.url}" width="100" height="100">
+		</div>
+		<div class="col-sm-4">
+			<a href="/users/${following.id}"><span class="follower-name">${following.first_name}</span>
+			<span class="follower-name">${following.last_name}</span></a>
+
+			<p>${following.email}</p>	
+			</div>
+		</div>
+		`
+
+		$('.js-following-modal').html(html);
+	}); // forEach
+	console.log(response);
+} // getFollowing
+
+
+
+
+
+
+
+
+
 
 
 
