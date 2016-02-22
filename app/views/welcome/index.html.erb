@@ -14,13 +14,13 @@ p, div {
    	
 }
 .signed-in-body {
-	background-color: #000000;
+	background-color: #FFFFFF;
 		background-size: 100% 100%;
    		background-repeat: no-repeat;
 		background-attachment: fixed;
 }
 .not-signed-in-body {
-	background-color: #000000;
+	background-color: #FFFFFF;
 		background-size: 100% 100%;
    		background-repeat: no-repeat;
 		background-attachment: fixed;
@@ -53,7 +53,7 @@ p, div {
 }
 
 .first-half {
-	color: #ABABAB;
+	color: #000000;
 	font-size: 40px;
 }
 
@@ -63,10 +63,10 @@ p, div {
 }
 
 .content-background {
-	background-color: #1D1D1D;
+	background-color: #f1f1f1;
 	border-radius: 3px;
-	color: white;
-	height: 650px;
+	color: black;
+	padding: 10px;
 }
 
 .fake-player {
@@ -103,6 +103,51 @@ p, div {
 }
 
 
+.audio-around {
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 4px;
+	padding-left: 0px;
+	padding-top: 0px;
+	height: 125px;
+	background-color: #F7F7FF;
+	background-image: url('../assets/css-gradient-background.png');
+	background-size: 100% 100%;
+	
+}
+
+.audio-widget {
+	width: 100%;
+	background-color: #000000;
+
+}
+
+.song-content {
+	padding-left: 10px;
+	color: white;
+}
+
+
+.box-shadow--2dp {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12)
+}
+.box-shadow--3dp {
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12)
+}
+.box-shadow--4dp {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2)
+}
+.box-shadow--6dp {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2)
+}
+.box-shadow--8dp {
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2)
+}
+.box-shadow--16dp {
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2)
+}	
+
+
 
 </style>
 
@@ -127,9 +172,9 @@ p, div {
 
 			<div class="col-sm-6">
 						<div class="first-buttons">
-						<%= link_to 'Register', new_user_registration_path, class: 'btn btn-default btn-md' %>
+						<%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-md' %>
 
-						<%= link_to 'Sign In', new_user_session_path, class: 'btn btn-default btn-md', :style => 'margin-left: 25px; width: 90px;' %>
+						<%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary btn-md', :style => 'margin-left: 25px; width: 90px;' %>
 						</div> <!-- first buttons -->
 			</div> <!-- col-sm-6 -->
 
@@ -179,6 +224,23 @@ p, div {
 		<div class="row">
 			<div class="col-sm-7 content-background">
 				
+				<% @tracks.each do |x| %>
+					<div class="audio-around box-shadow--6dp">
+					<audio controls class="audio-widget">
+					  <source src="<%= x.track %>" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+
+					<div class="song-content">
+
+					<h4 style="color: black;"><b><%= x.title %></b></h4>
+					<h6 style="color: black;"><em><b><%= x.description %></b></em></h6>
+
+					</div><!-- song content -->
+					</div><!-- audio-around -->
+					<br><br>
+				<% end %>
+				</div>
 
 			<div class="col-sm-4">
 

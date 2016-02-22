@@ -6,7 +6,7 @@
 <style type="text/css">
 
 body {
-	background-color: #E8E8EC;
+	background-color: #FFFFFF;
 }
 
 p, div {
@@ -78,14 +78,14 @@ h1, h2, h3, h4, h5, h6 {
 	padding-top: 0px;
 	height: 125px;
 	background-color: #F7F7FF;
-	background-image: url('../assets/song-background.jpg');
+	background-image: url('../assets/css-gradient-background.png');
 	background-size: 100% 100%;
 	
 }
 
 .audio-widget {
 	width: 100%;
-	background-color: #3B5998;
+	background-color: #000000;
 
 }
 
@@ -105,12 +105,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .follower-name {
 	font-size: 20px;
-	
+
 }
 
 </style>
 
 <script>
+
 $("audio").on("play", function(){
     var _this = $(this);
     $("audio").each(function(i,el){
@@ -143,7 +144,11 @@ $("audio").on("play", function(){
 		<div class="row">
 			<div class="col-lg-2">	
 				<div class="avatar-border">	
-					<%= image_tag @user.avatar_url(:thumb) if @user.avatar? %>
+					<% if @user.avatar? %>
+					<%= image_tag @user.avatar_url(:thumb) %>
+					<% else %>
+					<%= image_tag "/assets/thumb/photo.jpg", :width => '150px', :height => '150px' %>
+					<% end %>
 				</div>
 
 			</div> <!-- col-lg-2 -->
@@ -198,8 +203,8 @@ $("audio").on("play", function(){
 
 					<div class="song-content">
 
-					<h4 style="color: white;"><b><%= x.title %></b></h4>
-					<h6 style="color: white;"><em><%= x.description %></em></h6>
+					<h4 style="color: black;"><b><%= x.title %></b></h4>
+					<h6 style="color: black;"><em><%= x.description %></em></h6>
 
 					</div><!-- song content -->
 					</div><!-- audio-around -->
@@ -217,7 +222,7 @@ $("audio").on("play", function(){
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Followers</h4>
+        <h4 class="modal-title"><b>Followers</b></h4>
       </div>
       <div class="modal-body js-followers-modal">
         
@@ -230,6 +235,26 @@ $("audio").on("play", function(){
 </div><!-- /.modal -->
 
 	<!-- FOLLOWERS MODAL -->
+
+
+	<div id="followers-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><b>Followers</b></h4>
+      </div>
+      <div class="modal-body js-followers-modal">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- FOLLOWING MODAL -->
 
 
 
