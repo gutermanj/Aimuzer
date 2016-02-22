@@ -6,7 +6,7 @@
 <style type="text/css">
 
 body {
-	background-color: #FFFFFF;
+	background-color: #F4F4F4;
 }
 
 p, div {
@@ -25,13 +25,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .overeverything {
-	position: fixed;
 	z-index: 20;
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 3px;
-	border-color: lightgray;
 	padding: 10px;
+	background-color: #2E2E2E;
+	width: 100%;
+}
+
+.fix-side-bar {
+	position: fixed;
+}
+
+
+
+.recent-activity {
+	text-align: center;
+	color: white;
+	font-size: 20px;
 }
 
 .box-shadow--2dp {
@@ -58,7 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 	border-width: 1px;
 	padding: 0px;
 	padding: 3px;
-	width: 96%;
+	width: 160px;
 	background-color: lightgray;
 	border-color: darkgray;
 }
@@ -72,26 +84,25 @@ h1, h2, h3, h4, h5, h6 {
 
 .audio-around {
 	border-style: solid;
-	border-width: 1px;
-	border-radius: 4px;
+	border-width: 0px;
 	padding-left: 0px;
 	padding-top: 0px;
 	height: 125px;
-	background-color: #F7F7FF;
-	background-image: url('../assets/black-gradient.jpg');
+	background-color:#7DBEBE;
 	background-size: 100% 100%;
-	
+	border-radius: 5px;
+	border-color:#7DBEBE;
 }
 
 .audio-widget {
 	width: 100%;
-	background-color: #000000;
-
+	background-color: black;
+	border-radius: 2px;
 }
 
 .song-content {
 	padding-left: 20px;
-	color: white;
+	color: #F7F7F7;
 }
 
 .follow-btn {
@@ -107,6 +118,57 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 20px;
 
 }
+
+.top-btns {
+	margin-top: -20px;
+	margin-left: 475px;
+	float: left;
+}
+
+.top-btns-2nd {
+	margin-top: -20px;
+	margin-left: 415px;
+	float: left;
+}
+
+.top-btns-middle {
+	margin-top: -20px;
+	margin-left: 465px;
+	float: left;
+}
+
+
+
+a {
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  position: relative;
+}
+a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: black;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+a:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+
+a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+
 
 </style>
 
@@ -129,6 +191,28 @@ $("audio").on("play", function(){
             $(el).get(0).pause();
     });
 });
+
+var fixmeTop = $('.overeverything').offset().top;       // get initial position of the element
+
+$(window).scroll(function() {                  // assign scroll event listener
+	
+    var currentScroll = $(window).scrollTop(); // get current position
+
+    if (currentScroll >= fixmeTop - 50) {           // apply position: fixed if you
+        $('.overeverything').css({                      // scroll to that element or below it
+            position: 'fixed',
+            top: '6%',
+            width: '25.3%'
+        });
+    } else {                                   // apply position: static
+        $('.overeverything').css({                      // if you scroll above it
+            position: 'static',
+            width: '100%'
+        });
+    }
+
+});
+
 });
 
 // This is here twice because in the rails app, switching from one page 
@@ -151,40 +235,43 @@ $("audio").on("play", function(){
 
 			</div> <!-- col-lg-2 -->
 
-			<div class="col-lg-7">
+			<div class="col-lg-6">
 
-				<div class="left-info-border">
-				<h3><%= @user.first_name %> <%= @user.last_name %></h3>
+				<div class="row">
 
-				<h5><i class="fa fa-bullseye"></i> <%= @zipcode[:city] %>, <%= @zipcode[:state_code] %></h5>
-				</div> <!-- left-info-border -->
+				<div class="col-sm-8">
+					<div class="left-info-border">
+					<h3><%= @user.first_name %> <%= @user.last_name %></h3>
 
-				<section class="stats">
-      			<%= render 'layouts/stats' %>
-   				</section>
+					<h5><i class="fa fa-bullseye"></i> <%= @zipcode[:city] %>, <%= @zipcode[:state_code] %></h5>
+					</div> <!-- left-info-border -->
 
-				<i class="fa fa-heart-o fav-genre-up"></i><a href="#"><span>  Favorite genre</span></a><br>
+					<section class="stats">
+	      			<%= render 'layouts/stats' %>
+	   				</section>
 
-				<i class="fa fa-tags"></i> <span>Total Tags | <a href="#"><%= @randtags %></a></span>
-				<% if current_user.id != @user.id %>
-				<%= render 'follow_form' if current_user %>
-				<% end %>
+					<i class="fa fa-heart-o fav-genre-up"></i><a href="#"><span>  Favorite genre</span></a><br>
 
-				<hr style="border-color: darkgray; width: 120%; margin-left: -30%;">
+					<i class="fa fa-tags"></i> <span>Total Tags | <%= @randtags %></span>
+					<% if current_user.id != @user.id %>
+					<%= render 'follow_form' if current_user %>
+					<% end %>
+					<div class="top-btns">
+					<%= link_to 'Playlists', root_path %>
+					</div> <!-- top-btns -->
+					<div class="top-btns-middle">
+					<span>|</span>
+					</div> <!-- top-btns -->
+					<div class="top-btns-2nd">
+					<%= link_to 'Likes', root_path %>
+					</div> <!-- top-btns -->
+				</div> <!-- col-sm-8 -->
+			</div>	
+			<hr style="border-color: darkgray; width: 135%; margin-left: -35%;">
+			</div> <!-- col-lg-6 -->
 
 
-
-			</div> <!-- col-lg-4 -->
-
-
-				<!-- =========== FIXED SIDE BAR =========== -->
-			<div class="col-lg-3">
-				<div class="overeverything box-shadow--4dp">
-					<h3 style="text-align: center;">Recent Tags</h3>
-					<hr style="width: 225px; border-color: darkgray;">
-					
-				</div> <!-- over everything -->
-			</div> <!-- col-lg-3 -->
+			
 		</div> <!-- row -->
 
 				<!-- =========== FIXED SIDE BAR =========== -->
@@ -201,14 +288,23 @@ $("audio").on("play", function(){
 
 					<div class="song-content">
 
-					<h4 style="color: white; font-family: helvetica;"><%= x.title %></h4>
-					<h6 style="color: white; font-family: helvetica;"><em><%= x.description %></em></h6>
-					
+					<h4 style="color: #F7F7F7; font-family: helvetica;"><%= x.title %></h4>
+					<h6 style="color: #F7F7F7; font-family: helvetica;"><em><%= x.description %></em></h6>
+
 					</div><!-- song content -->
 					</div><!-- audio-around -->
 					<br><br>
 					<% end %>
 			</div> <!-- col-sm-8 -->
+
+				<!-- =========== FIXED SIDE BAR =========== -->
+			<div class="col-sm-4">
+				<div class="overeverything box-shadow--4dp">
+					<h3 class="recent-activity">Recent Activity</h3>
+					<hr style="width: 100%; border-color: darkgray;">
+					
+				</div> <!-- over everything -->
+			</div> <!-- col-lg-3 -->
 				
 		</div> <!-- row -->
 	</div> <!-- container -->
