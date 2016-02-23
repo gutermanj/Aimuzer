@@ -99,6 +99,11 @@ p, div {
     font-family: 'Lato', sans-serif;
    	
 }
+
+i {
+	cursor: pointer;
+}
+
 .signed-in-body {
 	background-color: #F4F4F4;
 		background-size: 100% 100%;

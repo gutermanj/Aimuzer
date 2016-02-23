@@ -19,15 +19,29 @@ $(".nav a").on("click", function(){
    $(this).parent().addClass("active");
 });
 
-$('.audio-widget').on('click', function(e) {           
-  audioElement.play(); // load the html response into a DOM element
-  e.preventDefault(); // stop the browser from following the link
-  console.log('Trying to play');
-});
-
 $(document).on('ready', function () {
 
+	$('.song-btns').delegate('.js-unlike-track', 'click', function() {
+		console.log('Liking this song.');
+		var user_id = $('.js-like-track').data('user-id');
+		var track_id = $(this).data('id');
+		console.log(user_id);
+		console.log(track_id);
+		unlikeTrack(user_id, track_id);
+	});
 
+	$('.song-btns').delegate('.js-like-track', 'click', function() {
+		console.log('Liking this song.');
+		var user_id = $('.js-like-track').data('user-id');
+		var track_id = $(this).data('id');
+		console.log(user_id);
+		console.log(track_id);
+		likeTrack(user_id, track_id);
+	});
+
+	$('.top-btns-2nd').delegate('.profile-link', 'click', function() {
+		location.reload(true)
+	});
 
 
 	$('.js-followers').on('click', function() {
@@ -49,6 +63,15 @@ $(document).on('ready', function () {
 		console.log(user_id);
 		console.log(track_id);
 		unlikeTrack(user_id, track_id);
+	});
+
+	$('.js-like-track').on('click', function() {
+		console.log('Liking this song.');
+		var user_id = $('.js-like-track').data('user-id');
+		var track_id = $(this).data('id');
+		console.log(user_id);
+		console.log(track_id);
+		likeTrack(user_id, track_id);
 	});
 
 	$('.js-show-likes').on('click', function() {
@@ -82,6 +105,7 @@ $(window).scroll(function() {                  // assign scroll event listener
     }
 
 });
+
 
 }); // doc ready
 
@@ -190,7 +214,12 @@ function showLikes(response) {
 	var likes = response
 	likes.forEach(function (likes) {
 
-		var html = `<script>
+		var link = `
+			<a href="#" class="fa fa-long-arrow-left profile-link">Profile</a>
+			`
+		
+		var html = `
+		<script>
 			$("audio").on("play", function(){
 	    		var _this = $(this);
 	    		$("audio").each(function(i,el){
@@ -198,6 +227,15 @@ function showLikes(response) {
 	            		$(el).get(0).pause();
 	    			});
 				});
+
+			$('.song-btns').delegate('.js-unlike-track', 'click', function() {
+				console.log('Liking this song.');
+				var user_id = $('.js-like-track').data('user-id');
+				var track_id = $(this).data('id');
+				console.log(user_id);
+				console.log(track_id);
+				unlikeTrack(user_id, track_id);
+			});
 
 			$("audio").load();
 		</script>
@@ -217,8 +255,9 @@ function showLikes(response) {
 							<div class="col-sm-2">
 								<div class="song-btns">
 									
-									<a class="fa fa-heart js-unlike-track" href="#" style="color: #880000"></a>
-									
+									<span data-id="${likes.id}">
+									<i class="fa fa-heart js-unlike-track" style="color: #880000" data-id="${likes.id}" data-user-id="${likes.user_id}"></i>
+									</span>
 							
 
 								<i class="fa fa-share song-btn-space"></i>
@@ -234,11 +273,18 @@ function showLikes(response) {
 					<br><br>
 
 				`
-
+				$('.js-likes-title').html("<h1 style='margin-left: 12px;'>Likes</h1><hr style='width: 64%; margin-left: 15px; border-color: gray;'>");
 				$('.gonna-put-it-on-top-append').append(html);
+				$('.top-btns-2nd').html(link);
+
+				$('.top-btns-2nd').css({
+					marginLeft: '380px'
+				});
+
 				$('.gonna-put-it-on-top').css({
 					display: 'none'
-				});
+				}); 
+				
 
 				
 	}); // for each
@@ -265,22 +311,40 @@ function unlikeTrack(user_id, track_id) {
 function showUnlike(response) {
 	console.log(response);
 	var html = `
-		<i class="fa fa-heart-o"></i>
+		<i class="fa fa-heart-o js-like-track" style="text-decoration: none" data-id="${response.id}" data-user-id="${response.user_id}"></i>
 		`
 
 	$(`[data-id='${response.id}']`).html(html);
 }
 
+function likeTrack(user_id, track_id) {
+	$.ajax({
+		url: `/tracks/${track_id}/like`,
+
+		type: 'POST',
+
+		success: function(response) {
+			console.log(response);
+			showLike(response);
+		},
+
+		error: function() {
+			console.log('Something went wrong while liking this track.');
+		}
+	});
+}
+
+function showLike(response) {
+	console.log(response);
+	var html = `
+		<i class="fa fa-heart js-unlike-track" style="color: #880000; text-decoration: none" data-id="${response.id}" data-user-id="${response.user_id}"></i>
+		`
+
+		$(`[data-id='${response.id}']`).html(html);
+}
 
 
 
-$("audio").on("play", function(){
-    var _this = $(this);
-    $("audio").each(function(i,el){
-        if(!$(el).is(_this))
-            $(el).get(0).pause();
-    });
-});
 
 
 $(document).on('ready', function() {
@@ -291,6 +355,9 @@ $("audio").on("play", function(){
             $(el).get(0).pause();
     });
 });
+
+
+
 
 var fixmeTop = $('.overeverything').offset().top;       // get initial position of the element
 

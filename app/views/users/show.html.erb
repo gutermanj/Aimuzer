@@ -94,6 +94,10 @@ a:hover:after {
 
 
 		<div class="row">
+			<div class="js-likes-title">
+
+			</div>
+
 			<div class="col-sm-8 gonna-put-it-on-top-append">
 
 			</div>
@@ -101,7 +105,7 @@ a:hover:after {
 			<div class="col-sm-8 gonna-put-it-on-top">
 					<% @tracks.each do |x| %>
 					<div class="audio-around box-shadow--2dp">
-					<audio controls class="audio-widget">
+					<audio controls class="audio-widget" preload="metadata">
 					  <source src="<%= x.track.url %>" type="audio/mpeg">
 					Your browser does not support the audio element.
 					</audio>
@@ -118,10 +122,12 @@ a:hover:after {
 
 									<% if current_user.voted_for? x %>
 									<span data-id="<%= x.id %>">
-									<a class="fa fa-heart js-unlike-track" style="color: #880000" data-id="<%= x.id %>" data-user-id="<%= current_user.id %>"></a>
+									<i class="fa fa-heart js-unlike-track" style="color: #880000" data-id="<%= x.id %>" data-user-id="<%= current_user.id %>"></i>
 								</span>
 									<% else %>
-									<a class="fa fa-heart-o js-like-track"></a>
+									<span data-id="<%= x.id %>">
+									<i class="fa fa-heart-o js-like-track" data-id="<%= x.id %>" data-user-id="<%= current_user.id %>"></i>
+									</span>
 									
 								<% end %>
 								

@@ -13,7 +13,7 @@ class TracksController < ApplicationController
 		@track = @user.tracks.create(track_params)
 
 		if @track.save
-			redirect_to root_path
+			redirect_to user_path(current_user)
 		else
 			redirect_to :back
 			flash[:alert] = 'There was an error processing your request'
@@ -23,13 +23,14 @@ class TracksController < ApplicationController
 	def upvote 
 	  @track = Track.find_by(id: params[:id])
 	  @track.upvote_by current_user
-	  redirect_to :back
+	  
+	  render json: @track
 	end  
 
 	def unvote
 	  @track = Track.find_by(id: params[:id])
 	  @track.unliked_by current_user
-	  puts @track.id
+
 	  render json: @track
 	end
 
