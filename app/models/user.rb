@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  acts_as_voter
   belongs_to :gallery
 
   has_many :tracks
@@ -34,6 +35,8 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
+
+  
 
 
 

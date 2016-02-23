@@ -39,6 +39,22 @@ p, div {
 	z-index: 75;
 }
 
+
+
+body {
+	background-color: #F4F4F4;
+}
+
+p, div {
+	color: black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: black;
+}
+
+
+
 a {
   color: black;
   text-transform: uppercase;
@@ -46,6 +62,13 @@ a {
   letter-spacing: 0.1em;
   position: relative;
 }
+
+a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+
 a:after {    
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
@@ -58,12 +81,219 @@ a:after {
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
+
 a:hover:after { 
   width: 100%; 
   left: 0; 
 }
 
-a:hover {
-	text-decoration: none;
-	color: black;
+
+hr {
+	border-color: white;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato', sans-serif;
+}
+p, div {
+    font-family: 'Lato', sans-serif;
+   	
+}
+.signed-in-body {
+	background-color: #F4F4F4;
+		background-size: 100% 100%;
+   		background-repeat: no-repeat;
+		background-attachment: fixed;
+}
+.not-signed-in-body {
+	background-color: #F4F4F4;
+		background-size: 100% 100%;
+   		background-repeat: no-repeat;
+		background-attachment: fixed;
+}
+
+.first-buttons {
+	margin-left: 60%;
+	margin-top: 10%;
+}
+
+.intro-info {
+	opacity: 0.85;
+    filter: alpha(opacity=85);
+    background-color: black;
+    height: 350px;
+    padding-left: 20px;
+    padding-top: 10px;
+    color: white;
+    border-style: solid;
+    border-color: darkgray;
+    border-width: 1px;
+}
+
+.indent-1 {
+	margin-left: 50px;
+}
+
+.indent-2 {
+    color: black;
+}
+
+.first-half {
+	color: #000;
+	font-size: 40px;
+}
+
+.second-half {
+	color: #115555;
+	font-size: 30px;
+}
+
+
+
+@media only screen and (max-width: 1199px) {
+.overeverything {
+        display: none;
+}
+
+}
+
+
+
+
+
+
+.left-info-border {
+	border-left-style: solid;
+	border-width: 2px;
+	padding-left: 10px;
+	border-color: #660000;
+}
+
+.overeverything {
+	z-index: 20;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 3px;
+	padding: 10px;
+	background-color: #2E2E2E;
+	width: 100%;
+}
+
+.fix-side-bar {
+	position: fixed;
+}
+
+
+
+.recent-activity {
+	text-align: center;
+	color: white;
+	font-size: 20px;
+}
+
+.box-shadow--2dp {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12)
+}
+.box-shadow--3dp {
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12)
+}
+.box-shadow--4dp {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2)
+}
+.box-shadow--6dp {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2)
+}
+.box-shadow--8dp {
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2)
+}
+.box-shadow--16dp {
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2)
+}
+
+.avatar-border {
+	border-style: solid;
+	border-width: 1px;
+	padding: 0px;
+	padding: 3px;
+	width: 160px;
+	background-color: lightgray;
+	border-color: darkgray;
+}
+
+@media only screen and (max-width: 1199px) {
+.overeverything {
+        display: none;
+}
+
+}
+
+.audio-around {
+	border-style: solid;
+	border-width: 0px;
+	padding-left: 0px;
+	padding-top: 0px;
+	height: 125px;
+	background-color:#7DBEBE;
+	background-size: 100% 100%;
+	border-radius: 5px;
+	border-color:#7DBEBE;
+}
+
+.audio-widget {
+	width: 100%;
+	background-color: black;
+	border-radius: 2px;
+}
+
+.song-content {
+	padding-left: 20px;
+	color: #F7F7F7;
+}
+
+.follow-btn {
+	margin-right: 75px;
+	float: right;
+}
+
+.stats {
+	font-size: 17px;
+}
+
+.follower-name {
+	font-size: 20px;
+
+}
+
+.top-btns {
+	margin-top: -20px;
+	margin-left: 475px;
+	float: left;
+}
+
+.top-btns-2nd {
+	margin-top: -20px;
+	margin-left: 415px;
+	float: left;
+}
+
+.top-btns-middle {
+	margin-top: -20px;
+	margin-left: 465px;
+	float: left;
+}
+
+.song-btns {
+	margin-top: 55%;
+	font-size: 20px;
+}
+
+.song-btn-space {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.js-show-likes {
+	cursor: pointer;
+}
+
+

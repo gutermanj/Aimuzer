@@ -20,6 +20,27 @@ class TracksController < ApplicationController
 		end
 	end
 
+	def upvote 
+	  @track = Track.find_by(id: params[:id])
+	  @track.upvote_by current_user
+	  redirect_to :back
+	end  
+
+	def unvote
+	  @track = Track.find_by(id: params[:id])
+	  @track.unliked_by current_user
+	  redirect_to :back
+	end
+
+	def likes
+		@user = User.find_by(id: params[:id])
+		@likes = @user.find_voted_items
+
+		render json: @likes
+	end
+
+
+
 	private
 
 	def track_params

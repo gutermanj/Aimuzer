@@ -4,141 +4,6 @@
 </head>
 
 <style type="text/css">
-
-body {
-	background-color: #F4F4F4;
-}
-
-p, div {
-	color: black;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	color: black;
-}
-
-.left-info-border {
-	border-left-style: solid;
-	border-width: 2px;
-	padding-left: 10px;
-	border-color: #660000;
-}
-
-.overeverything {
-	z-index: 20;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 3px;
-	padding: 10px;
-	background-color: #2E2E2E;
-	width: 100%;
-}
-
-.fix-side-bar {
-	position: fixed;
-}
-
-
-
-.recent-activity {
-	text-align: center;
-	color: white;
-	font-size: 20px;
-}
-
-.box-shadow--2dp {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12)
-}
-.box-shadow--3dp {
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12)
-}
-.box-shadow--4dp {
-    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2)
-}
-.box-shadow--6dp {
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2)
-}
-.box-shadow--8dp {
-    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2)
-}
-.box-shadow--16dp {
-    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2)
-}
-
-.avatar-border {
-	border-style: solid;
-	border-width: 1px;
-	padding: 0px;
-	padding: 3px;
-	width: 160px;
-	background-color: lightgray;
-	border-color: darkgray;
-}
-
-@media only screen and (max-width: 1199px) {
-.overeverything {
-        display: none;
-}
-
-}
-
-.audio-around {
-	border-style: solid;
-	border-width: 0px;
-	padding-left: 0px;
-	padding-top: 0px;
-	height: 125px;
-	background-color:#7DBEBE;
-	background-size: 100% 100%;
-	border-radius: 5px;
-	border-color:#7DBEBE;
-}
-
-.audio-widget {
-	width: 100%;
-	background-color: black;
-	border-radius: 2px;
-}
-
-.song-content {
-	padding-left: 20px;
-	color: #F7F7F7;
-}
-
-.follow-btn {
-	margin-right: 75px;
-	float: right;
-}
-
-.stats {
-	font-size: 17px;
-}
-
-.follower-name {
-	font-size: 20px;
-
-}
-
-.top-btns {
-	margin-top: -20px;
-	margin-left: 475px;
-	float: left;
-}
-
-.top-btns-2nd {
-	margin-top: -20px;
-	margin-left: 415px;
-	float: left;
-}
-
-.top-btns-middle {
-	margin-top: -20px;
-	margin-left: 465px;
-	float: left;
-}
-
-
-
 a {
   color: black;
   text-transform: uppercase;
@@ -146,9 +11,16 @@ a {
   letter-spacing: 0.1em;
   position: relative;
 }
+
+a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+
 a:after {    
   background: none repeat scroll 0 0 transparent;
-  bottom: 0;
+  bottom: -4px;
   content: "";
   display: block;
   height: 2px;
@@ -158,67 +30,12 @@ a:after {
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
+
 a:hover:after { 
   width: 100%; 
   left: 0; 
 }
-
-a:hover {
-	text-decoration: none;
-	color: black;
-}
-
-
-
 </style>
-
-<script>
-
-$("audio").on("play", function(){
-    var _this = $(this);
-    $("audio").each(function(i,el){
-        if(!$(el).is(_this))
-            $(el).get(0).pause();
-    });
-});
-
-
-$(document).on('ready', function() {
-$("audio").on("play", function(){
-    var _this = $(this);
-    $("audio").each(function(i,el){
-        if(!$(el).is(_this))
-            $(el).get(0).pause();
-    });
-});
-
-var fixmeTop = $('.overeverything').offset().top;       // get initial position of the element
-
-$(window).scroll(function() {                  // assign scroll event listener
-	
-    var currentScroll = $(window).scrollTop(); // get current position
-
-    if (currentScroll >= fixmeTop - 50) {           // apply position: fixed if you
-        $('.overeverything').css({                      // scroll to that element or below it
-            position: 'fixed',
-            top: '6%',
-            width: '25.3%'
-        });
-    } else {                                   // apply position: static
-        $('.overeverything').css({                      // if you scroll above it
-            position: 'static',
-            width: '100%'
-        });
-    }
-
-});
-
-});
-
-// This is here twice because in the rails app, switching from one page 
-// to another doesn't execute the document ready properly...
-</script>
-
 
 
 
@@ -263,7 +80,7 @@ $(window).scroll(function() {                  // assign scroll event listener
 					<span>|</span>
 					</div> <!-- top-btns -->
 					<div class="top-btns-2nd">
-					<%= link_to 'Likes', root_path %>
+					<a href="#" class="js-show-likes" data-id="<%= @user.id %>">Likes</a>
 					</div> <!-- top-btns -->
 				</div> <!-- col-sm-8 -->
 			</div>	
@@ -274,11 +91,10 @@ $(window).scroll(function() {                  // assign scroll event listener
 			
 		</div> <!-- row -->
 
-				<!-- =========== FIXED SIDE BAR =========== -->
 
 
 		<div class="row">
-			<div class="col-sm-8">
+			<div class="col-sm-8 gonna-put-it-on-top">
 					<% @tracks.each do |x| %>
 					<div class="audio-around box-shadow--2dp">
 					<audio controls class="audio-widget">
@@ -287,9 +103,27 @@ $(window).scroll(function() {                  // assign scroll event listener
 					</audio>
 
 					<div class="song-content">
-
+						<div class="row">
+							<div class="col-sm-10">
 					<h4 style="color: #F7F7F7; font-family: helvetica;"><%= x.title %></h4>
 					<h6 style="color: #F7F7F7; font-family: helvetica;"><em><%= x.description %></em></h6>
+							</div> <!-- col-sm-8 -->
+
+							<div class="col-sm-2">
+								<div class="song-btns">
+									<% if current_user.voted_for? x %>
+									<a class="fa fa-heart js-unlike-track" href="/tracks/<%= x.id %>/unlike" data-method="POST" style="color: #880000"></a>
+									<% else %>
+									<a class="fa fa-heart-o js-like-track" href="/tracks/<%= x.id %>/like" data-method="POST"></a>
+								<% end %>
+
+								<i class="fa fa-share song-btn-space"></i>
+
+								<i class="fa fa-tags song-btn-space"></i>
+
+								</div> <!-- song-btns -->
+							</div> <!-- col-sm-4 -->
+						</div> <!-- row -->
 
 					</div><!-- song content -->
 					</div><!-- audio-around -->
@@ -300,12 +134,20 @@ $(window).scroll(function() {                  // assign scroll event listener
 				<!-- =========== FIXED SIDE BAR =========== -->
 			<div class="col-sm-4">
 				<div class="overeverything box-shadow--4dp">
-					<h3 class="recent-activity">Recent Activity</h3>
+					<h3 class="recent-activity">Recent Uploads</h3>
 					<hr style="width: 100%; border-color: darkgray;">
+
+					<% @tracks.order("id DESC").first(3).each do |x| %>
+					<h4><%= link_to x.title, user_track_path(@user.id, x.id), :style => 'color: white;' %></h4>
+					<hr style="border-color: gray">
+
+				
+					<% end %>
 					
 				</div> <!-- over everything -->
-			</div> <!-- col-lg-3 -->
-				
+			</div> <!-- col-lg-4 -->
+				<!-- =========== FIXED SIDE BAR =========== -->
+
 		</div> <!-- row -->
 	</div> <!-- container -->
 

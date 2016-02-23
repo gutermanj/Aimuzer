@@ -1,164 +1,39 @@
 <html>
 
+
 <style type="text/css">
-
-hr {
-	border-color: white;
+a {
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  position: relative;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lato', sans-serif;
-}
-p, div {
-    font-family: 'Lato', sans-serif;
-   	
-}
-.signed-in-body {
-	background-color: #F4F4F4;
-		background-size: 100% 100%;
-   		background-repeat: no-repeat;
-		background-attachment: fixed;
-}
-.not-signed-in-body {
-	background-color: #F4F4F4;
-		background-size: 100% 100%;
-   		background-repeat: no-repeat;
-		background-attachment: fixed;
-}
-
-.first-buttons {
-	margin-left: 60%;
-	margin-top: 10%;
-}
-
-.intro-info {
-	opacity: 0.85;
-    filter: alpha(opacity=85);
-    background-color: black;
-    height: 350px;
-    padding-left: 20px;
-    padding-top: 10px;
-    color: white;
-    border-style: solid;
-    border-color: darkgray;
-    border-width: 1px;
-}
-
-.indent-1 {
-	margin-left: 50px;
-}
-
-.indent-2 {
-    color: black;
-}
-
-.first-half {
-	color: #000;
-	font-size: 40px;
-}
-
-.second-half {
-	color: gray;
-	font-size: 30px;
+a:hover {
+	text-decoration: none;
+	color: black;
 }
 
 
-
-.play-btn {
-	border-radius: 30px;
-	border-style: solid;
-	width: 60px;
-	padding: 10px;
-	font-size: 35px;
-	color: #3D3D3D;
-	padding-left: 12px;
-	border-width: 2px;
+a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: -10px;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: black;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
 }
 
-.play-btn:hover {
-	border-radius: 30px;
-	border-style: solid;
-	width: 60px;
-	padding: 10px;
-	font-size: 35px;
-	color: #FFFFFF;
-	padding-left: 12px;
-	border-width: 2px;
-	background-color: #3D3D3D;
+a:hover:after { 
+  width: 100%; 
+  left: 0; 
 }
-
-
-.audio-around {
-	border-style: solid;
-	border-width: 0px;
-	padding-left: 0px;
-	padding-top: 0px;
-	height: 125px;
-	background-color:#7DBEBE;
-	background-size: 100% 100%;
-	border-radius: 5px;
-	border-color:#7DBEBE;
-}
-
-.audio-widget {
-	width: 100%;
-	background-color: black;
-	border-radius: 2px;
-}
-
-.song-content {
-	padding-left: 20px;
-	color: #F7F7F7;
-}
-
-
-.box-shadow--2dp {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12)
-}
-.box-shadow--3dp {
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12)
-}
-.box-shadow--4dp {
-    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2)
-}
-.box-shadow--6dp {
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2)
-}
-.box-shadow--8dp {
-    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2)
-}
-.box-shadow--16dp {
-    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2)
-}	
-
-@media only screen and (max-width: 1199px) {
-.overeverything {
-        display: none;
-}
-
-}
-
-.overeverything {
-	z-index: 20;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 3px;
-	padding: 10px;
-	width: 100%;
-	background-color: #2E2E2E;
-}
-
-.recent-activity {
-	text-align: center;
-	color: white;
-	font-size: 20px;
-}
-
-
-
-
 </style>
-
 
 <!-- ============ IF NO ONE IS SIGNED IN ===========-->
 
@@ -177,9 +52,9 @@ p, div {
 
 			<div class="col-sm-6">
 						<div class="first-buttons">
-						<%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-md' %>
+						<%= link_to 'Register', new_user_registration_path %>
 
-						<%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary btn-md', :style => 'margin-left: 25px; width: 90px;' %>
+						<%= link_to 'Sign In', new_user_session_path, :style => 'margin-left: 25px; width: 90px;' %>
 						</div> <!-- first buttons -->
 			</div> <!-- col-sm-6 -->
 
@@ -189,19 +64,22 @@ p, div {
 
 	</div><!-- container not sign in body -->	
 
-	
-
-
-
-
-
-
-					
 </body>
 
 <!-- ============ IF NO ONE IS SIGNED IN ===========-->
 
+
+
+
+
+
+
 <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+
+
+
+
+
 
 <!-- ============ IF SOMEONE IS SIGNED IN ===========-->
 

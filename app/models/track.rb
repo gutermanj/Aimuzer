@@ -1,4 +1,5 @@
 class Track < ActiveRecord::Base
+	acts_as_votable
 	belongs_to :user
 
 	mount_uploader :track, TrackUploader
