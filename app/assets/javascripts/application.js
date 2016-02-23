@@ -53,6 +53,9 @@ $(document).on('ready', function () {
 
 	$('.js-show-likes').on('click', function() {
 		console.log('Gettin da likes');
+		$('.overeverything').css({                      // scroll to that element or below it
+            display: 'none'
+        });
 		var user_id = $('.js-show-likes').data('id');
 		getLikes(user_id);
 	});
@@ -183,9 +186,21 @@ function getLikes(user_id) {
 } // getLikes
 
 function showLikes(response) {
+	console.log(response);
 	var likes = response
 	likes.forEach(function (likes) {
-		var html = `
+
+		var html = `<script>
+			$("audio").on("play", function(){
+	    		var _this = $(this);
+	    		$("audio").each(function(i,el){
+	        		if(!$(el).is(_this))
+	            		$(el).get(0).pause();
+	    			});
+				});
+
+			$("audio").load();
+		</script>
 			<div class="audio-around box-shadow--2dp">
 					<audio controls class="audio-widget">
 					  <source src="${likes.track.url}" type="audio/mpeg">
@@ -217,9 +232,15 @@ function showLikes(response) {
 					</div><!-- song content -->
 					</div><!-- audio-around -->
 					<br><br>
+
 				`
 
-				$('.gonna-put-it-on-top').html(html);
+				$('.gonna-put-it-on-top-append').append(html);
+				$('.gonna-put-it-on-top').css({
+					display: 'none'
+				});
+
+				
 	}); // for each
 } // show likes
 
