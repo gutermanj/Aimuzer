@@ -80,7 +80,7 @@ a:hover:after {
 					<span>|</span>
 					</div> <!-- top-btns -->
 					<div class="top-btns-2nd">
-					<a href="#" class="js-show-likes" data-id="<%= @user.id %>">Likes</a>
+					<a href="#" class="js-show-likes" data-user-id="<%= @user.id %>">Likes</a>
 					</div> <!-- top-btns -->
 				</div> <!-- col-sm-8 -->
 			</div>	
@@ -115,12 +115,16 @@ a:hover:after {
 
 							<div class="col-sm-2">
 								<div class="song-btns">
-									<% if current_user.voted_for? x %>
-									<a class="fa fa-heart js-unlike-track" href="/tracks/<%= x.id %>/unlike" data-method="POST" style="color: #880000"></a>
-									<% else %>
-									<a class="fa fa-heart-o js-like-track" href="/tracks/<%= x.id %>/like" data-method="POST"></a>
-								<% end %>
 
+									<% if current_user.voted_for? x %>
+									<span data-id="<%= x.id %>">
+									<a class="fa fa-heart js-unlike-track" style="color: #880000" data-id="<%= x.id %>" data-user-id="<%= current_user.id %>"></a>
+								</span>
+									<% else %>
+									<a class="fa fa-heart-o js-like-track"></a>
+									
+								<% end %>
+								
 								<i class="fa fa-share song-btn-space"></i>
 
 								<i class="fa fa-tags song-btn-space"></i>

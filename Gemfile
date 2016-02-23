@@ -19,8 +19,11 @@ gem 'zip-codes'
 gem 'envyable'
 gem 'acts_as_votable', '~> 0.10.0'
 
+
+
 group :development, :test do
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :development do

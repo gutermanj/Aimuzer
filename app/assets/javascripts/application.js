@@ -45,7 +45,7 @@ $(document).on('ready', function () {
 	$('.js-unlike-track').on('click', function() {
 		console.log('Unliking this song.');
 		var user_id = $('.js-unlike-track').data('user-id');
-		var track_id = $('.js-unlike-track').data('fid');
+		var track_id = $(this).data('id');
 		console.log(user_id);
 		console.log(track_id);
 		unlikeTrack(user_id, track_id);
@@ -56,7 +56,7 @@ $(document).on('ready', function () {
 		$('.overeverything').css({                      // scroll to that element or below it
             display: 'none'
         });
-		var user_id = $('.js-show-likes').data('id');
+		var user_id = $('.js-show-likes').data('user-id');
 		getLikes(user_id);
 	});
 
@@ -253,12 +253,22 @@ function unlikeTrack(user_id, track_id) {
 
 		success: function(response) {
 			console.log(response);
+			showUnlike(response);
 		},
 
 		error: function() {
 			console.log('Something went wrong while unliking this track.');
 		}
 	});
+}
+
+function showUnlike(response) {
+	console.log(response);
+	var html = `
+		<i class="fa fa-heart-o"></i>
+		`
+
+	$(`[data-id='${response.id}']`).html(html);
 }
 
 

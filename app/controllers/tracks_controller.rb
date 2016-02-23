@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-
+	skip_before_filter  :verify_authenticity_token
 	def show
 	end
 
@@ -29,7 +29,8 @@ class TracksController < ApplicationController
 	def unvote
 	  @track = Track.find_by(id: params[:id])
 	  @track.unliked_by current_user
-	  redirect_to :back
+	  puts @track.id
+	  render json: @track
 	end
 
 	def likes
