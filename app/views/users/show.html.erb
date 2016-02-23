@@ -102,7 +102,7 @@ a:hover:after {
 					<% @tracks.each do |x| %>
 					<div class="audio-around box-shadow--2dp">
 					<audio controls class="audio-widget">
-					  <source src="<%= x.track %>" type="audio/mpeg">
+					  <source src="<%= x.track.url %>" type="audio/mpeg">
 					Your browser does not support the audio element.
 					</audio>
 
