@@ -10,6 +10,7 @@ get '/soundcloud/connect',    :to => 'soundcloud#connect'
 get 'soundcloud/oauth-callback', to: 'soundcloud#connected'
 get '/users/:id/likes' => 'tracks#likes'
 get 'logout', to: 'soundcloud#destroy', as: 'logout'
+get '/welcome/results' => 'welcome#search'
 
 resources :users do
 

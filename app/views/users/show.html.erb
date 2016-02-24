@@ -70,8 +70,10 @@ a:hover:after {
 					<i class="fa fa-heart-o fav-genre-up"></i><a href="#"><span>  Favorite genre</span></a><br>
 
 					<i class="fa fa-tags"></i> <span>Total Tags | <%= @randtags %></span>
+					<% if current_user %>
 					<% if current_user.id != @user.id %>
 					<%= render 'follow_form' if current_user %>
+					<% end %>
 					<% end %>
 					<div class="top-btns">
 					<%= link_to 'Playlists', root_path %>
@@ -113,13 +115,13 @@ a:hover:after {
 					<div class="song-content">
 						<div class="row">
 							<div class="col-sm-10">
-					<h4 style="color: #F7F7F7; font-family: helvetica;"><%= x.title %></h4>
-					<h6 style="color: #F7F7F7; font-family: helvetica;"><em><%= x.description %></em></h6>
+					<h4><%= link_to x.title, user_track_path(@user.id, x.id), :style => 'color: black;' %></h4>
+					<h6 style="color: #000000; font-family: helvetica;"><em><%= x.description %></em></h6>
 							</div> <!-- col-sm-8 -->
 
 							<div class="col-sm-2">
 								<div class="song-btns">
-
+									<% if current_user %>
 									<% if current_user.voted_for? x %>
 									<span data-id="<%= x.id %>">
 									<i class="fa fa-heart js-unlike-track" style="color: #880000" data-id="<%= x.id %>" data-user-id="<%= current_user.id %>"></i>
@@ -130,7 +132,8 @@ a:hover:after {
 									</span>
 									
 								<% end %>
-								
+								<% end %>	
+
 								<i class="fa fa-share song-btn-space"></i>
 
 								<i class="fa fa-tags song-btn-space"></i>
@@ -147,7 +150,7 @@ a:hover:after {
 
 				<!-- =========== FIXED SIDE BAR =========== -->
 			<div class="col-sm-4">
-				<div class="overeverything box-shadow--4dp">
+				<div class="overeverything box-shadow--16dp">
 					<h3 class="recent-activity">Recent Uploads</h3>
 					<hr style="width: 100%; border-color: darkgray;">
 

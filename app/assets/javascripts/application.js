@@ -145,9 +145,11 @@ function showFollowers(response) {
 			<p>${follower.email}</p>	
 			</div>
 		</div>
+		<hr>
 		`
 
-		$('.js-followers-modal').html(html);
+		$('.js-followers-modal').append(html);
+
 
 	});
 		console.log(response);
@@ -187,9 +189,10 @@ function showFollowing(response) {
 			<p>${following.email}</p>	
 			</div>
 		</div>
+		<hr>
 		`
 
-		$('.js-following-modal').html(html);
+		$('.js-following-modal').append(html);
 	}); // forEach
 	console.log(response);
 } // getFollowing

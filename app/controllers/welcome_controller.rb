@@ -1,5 +1,9 @@
 class WelcomeController < ApplicationController
   def index
-  	@tracks = Track.all
+	  	if params[:search]
+	      @tracks = Track.search(params[:search]).order("created_at DESC")
+	    else
+	  	@tracks = Track.all
+  	end
   end
 end
