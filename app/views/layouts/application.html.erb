@@ -78,18 +78,27 @@
       		<% if current_user %>
         <li><%= link_to 'Welcome back, ' + current_user.first_name, user_path(current_user) %></li>
         	<% end %>
+          <% if current_user_sc %>
+          <li><%= link_to 'Welcome back, ' + session[:user_id].to_s %></li>
+          <% end %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle fa fa-bars" style="font-size: 20px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <% if current_user %>
+            <% if current_user || current_user_sc %>
             <li><%= link_to 'Upload', new_user_track_path(current_user), :style => 'font-weight: bold;' %></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
             <% end %>
-            <% if current_user %>
+            <% if current_user && session[:user_id] == nil %>
             <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-            <% else %>
+            <% end %> 
+
+            <% if current_user_sc %>
+            <li><%= link_to "Logout", logout_path %></li>
+            <% end %>
+
+            <% if current_user == nil && current_user_sc == nil %>
              <li><%= link_to 'Login', new_user_session_path %></li>
              <li><%= link_to 'Sign up', new_user_registration_path %></li>
              <% end %>
@@ -103,6 +112,7 @@
 <!-- ___________________________NAV BAR__________________________ -->
 
 <%= render partial: "layouts/flash_messages", flash: flash %> 
+
 
 
 <%= yield %>

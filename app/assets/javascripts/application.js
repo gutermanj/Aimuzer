@@ -191,8 +191,8 @@ function showFollowing(response) {
 		</div>
 		<hr>
 		`
-
 		$('.js-following-modal').append(html);
+
 	}); // forEach
 	console.log(response);
 } // getFollowing

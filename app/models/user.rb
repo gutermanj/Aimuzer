@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  require 'soundcloud'
   acts_as_voter
   belongs_to :gallery
 
@@ -14,11 +15,12 @@ class User < ActiveRecord::Base
 
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+
 	
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
 
   mount_uploader :avatar, AvatarUploader
 
@@ -35,6 +37,15 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
+
+  def self.create_from_soundcloud(soundcloud_user, access_token)
+
+  create! do |user|
+    user.soundcloud_user_id = soundcloud_user["id"]
+    user.soundcloud_access_token = access_token["access_token"]
+  end
+  
+end
 
   
 

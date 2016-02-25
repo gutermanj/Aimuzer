@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'soundcloud/connect'
+
+  get 'soundcloud/connected'
+
+  get 'soundcloud/destroy'
+
   get 'relationships/new'
 
   get 'relationships/create'
@@ -7,11 +13,9 @@ Rails.application.routes.draw do
  
 
 get '/soundcloud/connect',    :to => 'soundcloud#connect'
-get 'soundcloud/oauth-callback', to: 'soundcloud#connected'
-get '/users/:id/likes' => 'tracks#likes'
+get 'soundcloud/connected', to: 'soundcloud#connected'
 get 'logout', to: 'soundcloud#destroy', as: 'logout'
-get '/welcome/results' => 'welcome#search'
-
+  
 resources :users do
 
 	resources :tracks

@@ -300,4 +300,16 @@ i {
 	cursor: pointer;
 }
 
+.sc-form {
+	border-left-style: solid;
+	border-width: 1px;
+	height: 350px;
+	border-color: lightgray;
+}
+
+a.soundcloud-btn:hover:after {
+	text-decoration: none;
+	width: 0%;
+}
+
 
