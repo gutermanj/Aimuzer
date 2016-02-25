@@ -1,21 +1,12 @@
 Rails.application.routes.draw do
-  get 'soundcloud/connect'
-
-  get 'soundcloud/connected'
-
-  get 'soundcloud/destroy'
-
-  get 'relationships/new'
-
-  get 'relationships/create'
-
   devise_for :users
- 
 
 get '/soundcloud/connect',    :to => 'soundcloud#connect'
 get 'soundcloud/connected', to: 'soundcloud#connected'
 get 'logout', to: 'soundcloud#destroy', as: 'logout'
   
+get 'users/:id/likes' => 'tracks#likes'
+
 resources :users do
 
 	resources :tracks

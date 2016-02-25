@@ -13,7 +13,6 @@ class Track < ActiveRecord::Base
 
 	def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
-    where("title like ?", "%#{query}%")
-    where("description like ?", "%#{query}%")
+    where("title || description like ?", "%#{query}%")
   	end
 end
