@@ -76,7 +76,7 @@
 
       <ul class="nav navbar-nav navbar-right">
       		<% if current_user %>
-        <li><%= link_to 'Welcome back, ' + current_user.first_name, user_path(current_user) %></li>
+        <li><%= link_to 'Welcome back, ' + current_user.first_name.to_s.inspect, user_path(current_user) %></li>
         	<% end %>
           <% if current_user_sc %>
           <li><%= link_to 'Welcome back, ' + session[:user_id].to_s %></li>

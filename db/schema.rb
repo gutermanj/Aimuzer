@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225001042) do
+ActiveRecord::Schema.define(version: 20160225235026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,10 +63,11 @@ ActiveRecord::Schema.define(version: 20160225001042) do
     t.string   "avatar"
     t.integer  "soundcloud_user_id"
     t.string   "soundcloud_access_token"
+    t.string   "sc_avatar"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["soundcloud_access_token"], name: "index_users_on_soundcloud_access_token", using: :btree
   add_index "users", ["soundcloud_user_id"], name: "index_users_on_soundcloud_user_id", using: :btree

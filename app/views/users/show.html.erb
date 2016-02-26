@@ -46,8 +46,10 @@ a:hover:after {
 			<div class="col-lg-2">	
 				<div class="avatar-border box-shadow--4dp">	
 					
-					<%= image_tag @user.avatar_url, :width => '150', :height => '150' %>
+
+					<%= image_tag @user.picture, :width => '150', :height => '150' %>
 					
+
 				</div>
 
 			</div> <!-- col-lg-2 -->
@@ -60,7 +62,9 @@ a:hover:after {
 					<div class="left-info-border">
 					<h3><%= @user.first_name %> <%= @user.last_name %></h3>
 
+					<% if current_user.zipcode %>
 					<h5><i class="fa fa-bullseye"></i> <%= @zipcode[:city] %>, <%= @zipcode[:state_code] %></h5>
+					<% end %>
 					</div> <!-- left-info-border -->
 
 					<section class="stats">

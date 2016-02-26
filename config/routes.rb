@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 get '/soundcloud/connect',    :to => 'soundcloud#connect'
 get 'soundcloud/connected', to: 'soundcloud#connected'
 get 'logout', to: 'soundcloud#destroy', as: 'logout'
+get '/soundcloud/new' => 'soundcloud#new'
+post '/users/soundcloud' => 'soundcloud#save_soundcloud_user'
   
 get 'users/:id/likes' => 'tracks#likes'
 

@@ -20,14 +20,34 @@ redirect_to client.authorize_url(:grant_type => 'authorization_code', :scope => 
 	client = Soundcloud.new(:access_token => access_token["access_token"])
 	# make an authenticated call
 	soundcloud_user = client.get('/me')
-	unless User.where(:soundcloud_user_id => soundcloud_user["id"]).present?
-	  User.create_from_soundcloud(soundcloud_user, access_token)
+
+	@user = User.find_by(:soundcloud_user_id => soundcloud_user["id"])
+
+	unless @user.present?
+	  @user = User.create_from_soundcloud(soundcloud_user, access_token)
 	end
-	sign_in_user = User.where(:soundcloud_user_id => soundcloud_user["id"])
-	#create user sessions
-	session[:user_id] = sign_in_user.first.id
-	redirect_to root_url, notice: "Signed in!"
+
+	sign_in @user
+	redirect_to user_path(@user.id)
+  
+	
   end
+
+  # def new
+  # 	@user = User.create_from_soundcloud(soundcloud_user, access_token)
+  # 	session[:user_id] = sign_in_user.first.id
+  # end
+
+ #  def save_soundcloud_user
+ #  	# save the user with an email they provide
+ #  	@user.create! do |user|
+ #  	user.soundcloud_user_id = soundcloud_user["id"]
+ #    user.soundcloud_access_token = access_token["access_token"]
+ #    user.email = params[:email]
+ #    user.zipcode = params[:zipcode]
+ #    user.soundcloud_username = soundcloud_user["username"]
+	# end
+ #  end
 
   def destroy
   	session[:user_id] = nil

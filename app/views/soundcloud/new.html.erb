@@ -1,0 +1,9 @@
+<%= form_for @user do |f| %>
+<%= f.label :email %>
+<%= f.text_field :email %>
+
+<%= f.label :zipcode %>
+<%= f.number_field :zipcode %>
+
+<%= f.submit 'Sign up!' %>
+<% end %>

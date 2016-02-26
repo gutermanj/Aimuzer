@@ -22,7 +22,33 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable
+         :recoverable, :rememberable, :trackable, :validatable
+
+         # validates :email, presence :true, if: self.soundcloud_user_id.nil?
+
+
+    validates :email, uniqueness: true, if: :devise_user?
+
+  def devise_user?
+    self.soundcloud_user_id.nil?
+  end
+
+
+  def email_required?
+    if self.soundcloud_user_id.nil?
+      true
+    else
+      false
+    end
+  end
+
+  def password_required?
+    if self.soundcloud_user_id.nil?
+      true
+    else
+      false
+    end
+  end
 
   
   mount_uploader :avatar, AvatarUploader
@@ -41,14 +67,47 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
-  def self.create_from_soundcloud(soundcloud_user, access_token)
+  def picture
+    # inside
+    # self.avatar  #uploader object
+    # self.avatar_url  #actual URL
+    # self.sc_avatar   #actual URL
 
-  create! do |user|
+    # if file is present, assign uploaded image
+
+    # if file is nil, and not a soundcloud user, use default image
+
+    # if file is nil, and is soundcloud user use sc_avatar
+
+
+      if self.avatar.file
+        self.avatar_url
+
+      elsif self.soundcloud_user_id.nil?
+        self.avatar_url
+
+      else
+        self.sc_avatar
+
+      end 
+
+     # outside (FYI)
+     # @user.picture
+  end
+
+  def self.create_from_soundcloud(soundcloud_user, access_token)
+   create! do |user|
     user.soundcloud_user_id = soundcloud_user["id"]
     user.soundcloud_access_token = access_token["access_token"]
+    user.first_name = soundcloud_user.username
+    user.sc_avatar = soundcloud_user.avatar_url
+    puts "--------------------------------------------------------"
+    p soundcloud_user
+    end
+
   end
   
-end
+
 
   
 
