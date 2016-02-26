@@ -28,6 +28,12 @@ class User < ActiveRecord::Base
 
 
     validates :email, uniqueness: true, if: :devise_user?
+    validates :password, presence: true, if: :devise_user?
+    validates :first_name, presence: true, if: :devise_user?
+    validates :last_name, presence: true, if: :devise_user?
+    validates :username, presence: true, if: :devise_user?
+    validates :zipcode, presence: true, if: :devise_user?
+
 
   def devise_user?
     self.soundcloud_user_id.nil?
@@ -99,18 +105,19 @@ class User < ActiveRecord::Base
    create! do |user|
     user.soundcloud_user_id = soundcloud_user["id"]
     user.soundcloud_access_token = access_token["access_token"]
-    user.first_name = soundcloud_user.username
+    user.username = soundcloud_user.username
     user.sc_avatar = soundcloud_user.avatar_url
     puts "--------------------------------------------------------"
     p soundcloud_user
     end
 
   end
-  
 
 
-  
+  private
 
-
+  def welcome_message
+    UserMailer.welcome_message(self.devliver)
+  end
 
 end

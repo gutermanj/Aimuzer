@@ -40,7 +40,8 @@ $(document).on('ready', function () {
 	});
 
 	$('.top-btns-2nd').delegate('.profile-link', 'click', function() {
-		location.reload(true)
+		var user_id = $('.profile-link').data("user-id");
+		getProfile(user_id);
 	});
 
 
@@ -77,7 +78,7 @@ $(document).on('ready', function () {
 	$('.js-show-likes').on('click', function() {
 		console.log('Gettin da likes');
 		$('.overeverything').css({                      // scroll to that element or below it
-            display: 'none'
+            zIndex: '200'
         });
 		var user_id = $('.js-show-likes').data('user-id');
 		getLikes(user_id);
@@ -118,6 +119,7 @@ function getFollowers(user_id) {
 		data: {},
 
 		success: function(response) {
+			$('.js-followers-modal').empty();
 			console.log(response[0]);
 			showFollowers(response);
 		},
@@ -164,6 +166,7 @@ function getFollowing(user_id) {
 		data: {},
 
 		success: function(response) {
+			$('.js-following-modal').empty();
 			console.log(response);
 			showFollowing(response);
 		},
@@ -215,10 +218,11 @@ function getLikes(user_id) {
 function showLikes(response) {
 	console.log(response);
 	var likes = response
+	var user_id_link = response[0].user_id
 	likes.forEach(function (likes) {
-
+		
 		var link = `
-			<a href="#" class="fa fa-long-arrow-left profile-link">Profile</a>
+			<a href="#" class="fa fa-long-arrow-left profile-link" data-user-id="${user_id_link}">Profile</a>
 			`
 		
 		var html = `
@@ -241,6 +245,27 @@ function showLikes(response) {
 			});
 
 			$("audio").load();
+
+			var fixmeTop = $('.overeverything').offset().top;       // get initial position of the element
+
+			$(window).scroll(function() {                  // assign scroll event listener
+	
+			    var currentScroll = $(window).scrollTop(); // get current position
+
+			    if (currentScroll >= fixmeTop - 50) {           // apply position: fixed if you
+			        $('.overeverything').css({                      // scroll to that element or below it
+			            position: 'fixed',
+			            top: '6%',
+			            width: '25.3%'
+			        });
+			    } else {                                   // apply position: static
+			        $('.overeverything').css({                      // if you scroll above it
+			            position: 'static',
+			            width: '100%'
+			        });
+			    }
+
+			});
 		</script>
 			<div class="audio-around box-shadow--2dp">
 					<audio controls class="audio-widget">
@@ -356,10 +381,13 @@ $("audio").on("play", function(){
     $("audio").each(function(i,el){
         if(!$(el).is(_this))
             $(el).get(0).pause();
-    });
-});
+    }); // audio on play
+}); // doc ready
 
 
+
+
+// =================== fixed side bar to top ==========================
 
 
 var fixmeTop = $('.overeverything').offset().top;       // get initial position of the element
@@ -385,7 +413,42 @@ $(window).scroll(function() {                  // assign scroll event listener
 
 });
 
+// =================== fixed side bar to top ==========================
 
+function getProfile(user_id) {
+	$.ajax({
+		url: `/users/${user_id}/`,
+
+		success: function(response) {
+			showProfile(response);
+		},
+
+		error: function() {
+			console.log("Something went wrong while grabbing the profile.");
+		}
+	});
+}
+
+
+function showProfile(response) {
+
+	var html = `
+
+		<head>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+		</head>
+
+		${response}
+
+
+		`
+
+		$('.main-container').html(html);
+}
 
 
 
