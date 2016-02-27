@@ -4,6 +4,14 @@ class WelcomeController < ApplicationController
 	      @tracks = Track.search(params[:search]).order("created_at DESC")
 	    else
 	  	@tracks = Track.all
-  	end
+  		end
   end
+
+  def search
+  		if params[:search]
+	    @tracks = Track.search(params[:search]).order("created_at DESC")
+	    else
+	  	@tracks = Track.all
+  		end
+  	end
 end

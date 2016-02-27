@@ -32,6 +32,8 @@ end
   resources (:devise)
   get 'welcome/index'
 
+  get 'welcome/search' => 'welcome#search'
+
 
 
 

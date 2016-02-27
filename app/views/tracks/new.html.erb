@@ -18,7 +18,7 @@
 				    <br><br>
 				    <%= f.hidden_field :track_cache %>
 				    <br>
-				    <%= f.submit 'Upload', :class => 'btn btn-primary form-control' %>
+				    <button type="submit" class="btn btn-primary form-control upload-btn" data-user-id="<%= current_user.id %>">Upload</button>
 				  </p>
 				<% end %>
 		</div> <!-- col-sm-6 -->

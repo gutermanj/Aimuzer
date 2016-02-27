@@ -1,0 +1,29 @@
+		
+
+			<div class="container">	
+			<div class="row">		
+			<h2>Search Results</h2>
+			<hr>
+
+				<div class="col-sm-8 content-background">
+				
+				<% @tracks.each do |x| %>
+					<div class="audio-around box-shadow--6dp">
+					<audio controls class="audio-widget" preload="metadata">
+					  <source src="<%= x.track.url %>" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+
+					<div class="song-content">
+					<span style="font-size: 20px; padding-right: 10px;"> <%= x.title %></span>
+					<em><%= x.artist %></em>
+					
+					</div><!-- song content -->
+					</div><!-- audio-around -->
+					<br><br>
+					
+				<% end %>
+				</div>
+
+			</div>
+			</div>	

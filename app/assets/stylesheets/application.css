@@ -149,7 +149,7 @@ i {
 }
 
 .second-half {
-	color: #115555;
+	color: #009688;
 	font-size: 30px;
 }
 
@@ -182,6 +182,7 @@ i {
 	padding: 10px;
 	background-color: #2E2E2E;
 	width: 100%;
+	color:#e0f2f1;
 }
 
 .fix-side-bar {
@@ -238,7 +239,7 @@ i {
 	padding-left: 0px;
 	padding-top: 0px;
 	height: 125px;
-	background-color:#7DBEBE;
+	background-color: #4db6ac;
 	background-size: 100% 100%;
 	border-color:#7DBEBE;
 }
@@ -251,7 +252,7 @@ i {
 
 .song-content {
 	padding-left: 20px;
-	color: #F7F7F7;
+	color: #212121;
 }
 
 .follow-btn {

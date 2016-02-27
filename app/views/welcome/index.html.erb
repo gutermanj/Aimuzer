@@ -91,11 +91,11 @@ a:hover:after {
 
 	<div class="container">
 		<div class="row">
-			 <div class="col-sm-4">
+			 <div class="col-sm-12">
 					<span class="first-half">Aim</span><span class="second-half">uzer</span>
 					<br>
 						<span style="color: black;">Let's Discover, Together</span>
-							
+						<span style="margin-left: 39%; font-size: 25px;">Music Stream</span>
 				</div> <!-- col-lg-4 -->
 
 			<div class="col-sm-4">
@@ -109,21 +109,23 @@ a:hover:after {
 		<div class="row">
 			<div class="col-sm-8 content-background">
 				
-				<% @tracks.each do |x| %>
+				<% current_user.following.each do |x| %>
+					<% x.tracks.each do |x| %>
 					<div class="audio-around box-shadow--6dp">
-					<audio controls class="audio-widget">
-					  <source src="<%= x.track %>" type="audio/mpeg">
+					<audio controls class="audio-widget" preload="metadata">
+					  <source src="<%= x.track.url %>" type="audio/mpeg">
 					Your browser does not support the audio element.
 					</audio>
 
 					<div class="song-content">
-
-					<h4 style="color: white; font-family: helvetica;"><%= x.title %></h4>
-					<h6 style="color: white; font-family: helvetica;"><em><%= x.description %></em></h6>
-
+					<span style="font-size: 20px; padding-right: 10px;"> <%= x.title %></span>
+					<em><%= x.artist %></em>
+					
 					</div><!-- song content -->
 					</div><!-- audio-around -->
 					<br><br>
+					
+					<% end %>
 				<% end %>
 				</div>
 
@@ -137,6 +139,18 @@ a:hover:after {
 				<div class="overeverything box-shadow--4dp" id="recent-activity-fix">
 					<h3 class="recent-activity">Recent Activity</h3>
 					<hr style="width: 100%; border-color: darkgray;">
+
+					<% current_user.following.each do |x| %>
+						<% x.tracks.order('created_at DESC').first(4).each do |x| %>
+						<% @user = User.find_by(id: x.user_id) %>
+						<span style="font-size: 20px;"><%= x.title %></span>
+						
+						<h5><%= x.artist %></h5>
+						<p class="text-right" style="color: lightgray;">Uploaded by: <% if @user.username %><%= @user.username %><% else %><%= @user.first_name %><% end %></p>
+						<hr>
+						<% end %>
+						
+						<% end %>
 					
 				</div> <!-- over everything -->
 			
