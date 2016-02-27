@@ -54,7 +54,7 @@
       <ul class="nav navbar-nav">
         
         <% if current_user %>
-        <li class="<%= "active" if current_page?(current_user) %>"><%= link_to 'Profile', user_path(current_user) %></li>
+        <li class="<%= "active" if current_page?(current_user) %> profile-id" data-user-id="<%= @user.id %>"><%= link_to 'Profile', user_path(current_user) %></li>
         <% end %>
 
          <li class="<%= "active" if current_page?(root_path) %>"><%= link_to 'Discover', root_path %></li>

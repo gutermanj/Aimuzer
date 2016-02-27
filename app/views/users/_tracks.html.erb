@@ -1,0 +1,42 @@
+					<% @tracks.each do |x| %>
+						<div class="audio-around box-shadow--2dp">
+						<audio controls class="audio-widget" preload="metadata">
+						  <source src="<%= x.track.url %>" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+
+						<div class="song-content">
+							<div class="row">
+								<div class="col-sm-10">
+						<h4><%= link_to x.title, user_track_path(@user.id, x.id), :style => 'color: black;' %></h4>
+						<br>
+						<button class="btn btn-default btn-xs btn-space">hey</button><button class="btn btn-default btn-xs btn-space">hey</button><button class="btn btn-default btn-xs btn-space">hey</button><button class="btn btn-default btn-xs btn-space">hey</button><button class="btn btn-default btn-xs btn-space">hey</button><button class="btn btn-default btn-xs btn-space">hey</button>
+								</div> <!-- col-sm-10 -->
+
+								<div class="col-sm-2">
+									<div class="song-btns">
+										<% if current_user %>
+										<% if current_user.voted_for? x %>
+										<span data-id="<%= x.id %>">
+										<i class="fa fa-heart js-unlike-track" style="color: #880000" data-id="<%= x.id %>" data-user-id="<%= current_user.id %>"></i>
+									</span>
+										<% else %>
+										<span data-id="<%= x.id %>">
+										<i class="fa fa-heart-o js-like-track" data-id="<%= x.id %>" data-user-id="<%= current_user.id %>"></i>
+										</span>
+										
+									<% end %>
+									<% end %>	
+
+									<i class="fa fa-share song-btn-space"></i>
+
+									<i class="fa fa-tags song-btn-space js-tag-tracks" data-toggle="modal" data-target="#tag-modal"></i>	
+
+									</div> <!-- song-btns -->
+								</div> <!-- col-sm-4 -->
+							</div> <!-- row -->
+
+						</div><!-- song content -->
+						</div><!-- audio-around -->
+						<br><br>
+					<% end %>

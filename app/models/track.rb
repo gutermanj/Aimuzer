@@ -2,6 +2,10 @@ class Track < ActiveRecord::Base
 	acts_as_votable
 	belongs_to :user
 
+	has_many :playlist_tracks
+
+	has_many :playlists, through: :playlist_tracks
+
 	mount_uploader :track, TrackUploader
 
 	validates :title, presence: true

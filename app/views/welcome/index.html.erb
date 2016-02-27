@@ -143,7 +143,7 @@ a:hover:after {
 					<% current_user.following.each do |x| %>
 						<% x.tracks.order('created_at DESC').first(4).each do |x| %>
 						<% @user = User.find_by(id: x.user_id) %>
-						<span style="font-size: 20px;"><%= x.title %></span>
+						<%= link_to x.title, track_path(x.id), :style => 'font-size: 20px;' %>
 						
 						<h5><%= x.artist %></h5>
 						<p class="text-right" style="color: lightgray;">Uploaded by: <% if @user.username %><%= @user.username %><% else %><%= @user.first_name %><% end %></p>

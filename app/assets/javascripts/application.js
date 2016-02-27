@@ -40,7 +40,7 @@ $(document).on('ready', function () {
 	});
 
 	$('.top-btns-2nd').delegate('.profile-link', 'click', function() {
-		var user_id = $('.profile-link').data("user-id");
+		var user_id = $('.profile-id').data("user-id");
 		getProfile(user_id);
 	});
 
@@ -82,6 +82,10 @@ $(document).on('ready', function () {
         });
 		var user_id = $('.js-show-likes').data('user-id');
 		getLikes(user_id);
+	});
+
+	$('.js-tag-tracks').on('click', function() {
+		
 	});
 
 	$(window).on('scroll', function() {
