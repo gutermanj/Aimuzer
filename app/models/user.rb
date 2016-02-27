@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   belongs_to :gallery
   has_many :tracks
 
+  # has_many :tracks, through: :playlists
+
+  has_many :playlist_tracks, through: :playlists
+
+  has_many :playlists
   
   
   has_many :active_relationships, class_name:  "Relationship",
@@ -17,8 +22,8 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  has_many :playlists
-  has_many :tracks, through: :playlists
+
+  
   
 
   
