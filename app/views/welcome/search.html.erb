@@ -7,7 +7,7 @@
 
 				<div class="col-sm-8 content-background">
 				
-				<% @tracks.each do |x| %>
+				<% @track_query.each do |x| %>
 					<div class="audio-around box-shadow--6dp">
 					<audio controls class="audio-widget" preload="metadata">
 					  <source src="<%= x.track.url %>" type="audio/mpeg">
@@ -25,5 +25,15 @@
 				<% end %>
 				</div>
 
+
+				
+
 			</div>
+
+				<div id="loading">
+					
+				</div>
+
+			<h4 class="text-center"><%= will_paginate @track_query %></h4>
+
 			</div>	

@@ -84,6 +84,33 @@ $(document).on('ready', function () {
 		getLikes(user_id);
 	});
 
+	$(window).on('scroll', function() {
+    var y_scroll_pos = window.pageYOffset;
+    var scroll_pos_test = 150;             // set to whatever you want it to be
+
+    if(y_scroll_pos > scroll_pos_test) {
+
+
+  	var html = `
+  			<svg width="70" height="20">
+	  <circle cx="10" cy="10" r="0">
+	    <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite"/>
+	  </circle>
+	  <circle cx="35" cy="10" r="0">
+	    <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite"/>
+	  </circle>
+	  <circle cx="60" cy="10" r="0">
+	    <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite"/>
+	  </circle>
+			</svg>
+  		`
+
+  	$('#loading').html(html);
+ } else {
+ 	$('#loading').empty();
+ }
+});
+
 
 
 var fixmeTop = $('.overeverything').offset().top;       // get initial position of the element
