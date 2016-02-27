@@ -87,7 +87,7 @@
           <ul class="dropdown-menu">
             <% if current_user || current_user_sc %>
             <li><%= link_to 'Upload', new_user_track_path(current_user), :style => 'font-weight: bold;' %></li>
-            <li><a href="#">Another action</a></li>
+            <li><%= link_to 'New Playlist', new_user_playlist_path(current_user) %></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
             <% end %>

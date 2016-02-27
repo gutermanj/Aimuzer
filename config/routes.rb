@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   devise_for :users
 
 get '/soundcloud/connect',    :to => 'soundcloud#connect'
@@ -15,6 +16,8 @@ resources :users do
   member do
       get :following, :followers
     end
+
+  resources :playlists, only: [:new, :create]
   
 	# post 'tracks' => 'tracks#create'
   
