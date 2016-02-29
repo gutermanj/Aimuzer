@@ -1,4 +1,10 @@
 class PlaylistsController < ApplicationController
+
+	def index
+		@user = User.find_by(id: params[:user_id])
+		render 'index'
+	end
+
 	def new
 		@user = current_user
 		@playlist = @user.playlists.new
@@ -13,10 +19,15 @@ class PlaylistsController < ApplicationController
 
 		if @playlist.save
 			redirect_to user_path(current_user)
+			flash[:notice] = 'Playlist successfully created!'
 		else
 			redirect_to :back
 		end
 
+	 end
+
+	 def show
+	 	render 'show'
 	 end
 
 	 private

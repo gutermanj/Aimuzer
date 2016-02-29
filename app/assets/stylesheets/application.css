@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require social-share-button
  */
 
 body { padding-top: 70px; font-family: 'Lato', sans-serif; }
@@ -64,7 +65,7 @@ a {
 }
 
 a:hover {
-	text-decoration: none;
+	text-decoration: none !important;
 	color: black;
 }
 
@@ -149,7 +150,7 @@ i {
 }
 
 .second-half {
-	color: #009688;
+	color: #34495e;
 	font-size: 30px;
 }
 
@@ -176,13 +177,10 @@ i {
 
 .overeverything {
 	z-index: 20;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 3px;
 	padding: 10px;
-	background-color: #2E2E2E;
+	background-color: #bdc3c7;
 	width: 100%;
-	color:#e0f2f1;
+	color: #2c3e50;
 }
 
 .fix-side-bar {
@@ -193,7 +191,6 @@ i {
 
 .recent-activity {
 	text-align: center;
-	color: white;
 	font-size: 20px;
 }
 
@@ -239,7 +236,7 @@ i {
 	padding-left: 0px;
 	padding-top: 0px;
 	height: 125px;
-	background-color: #4db6ac;
+	background-color: #2980b9;
 	background-size: 100% 100%;
 	border-color:#7DBEBE;
 }
@@ -409,6 +406,46 @@ a.soundcloud-btn:hover:after {
 .btn-space {
 	margin-left: 10px;
 }
+
+.dark-underline {
+	border-color: teal;
+}
+
+.playlist-list {
+	display: inline;
+	margin-left: 20px;
+}
+
+.playlist-track-item {
+	color: black;
+}
+
+.playlist-track-item:hover {
+	text-decoration: none;
+	color: black;
+}
+
+.playlist-track-item:hover:after {
+	width: 0px;
+}
+
+.playlist-title:hover {
+	color: black;
+	text-decoration: none;
+}
+
+.playlist-title {
+	color: black;
+	text-decoration: none;
+}
+
+.social-share-button-twitter:hover:after {
+  width: 0px;
+
+}
+
+
+
 
 
 

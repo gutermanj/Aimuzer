@@ -137,17 +137,18 @@ a:hover:after {
 
 			
 				<div class="overeverything box-shadow--4dp" id="recent-activity-fix">
-					<h3 class="recent-activity">Recent Activity</h3>
+					<h3 class="recent-activity">Track Details</h3>
 					<hr style="width: 100%; border-color: darkgray;">
 
 					<% current_user.following.each do |x| %>
-						<% x.tracks.order('created_at DESC').first(4).each do |x| %>
+						<% x.tracks.order('created_at DESC').first(3).each do |x| %>
 						<% @user = User.find_by(id: x.user_id) %>
 						<%= link_to x.title, track_path(x.id), :style => 'font-size: 20px;' %>
 						
 						<h5><%= x.artist %></h5>
-						<p class="text-right" style="color: lightgray;">Uploaded by: <% if @user.username %><%= @user.username %><% else %><%= @user.first_name %><% end %></p>
+						<p class="text-right">Uploaded by: <% if @user.username %><%= @user.username %><% else %><%= @user.first_name %><% end %></p>
 						<hr>
+						<br>
 						<% end %>
 						
 						<% end %>

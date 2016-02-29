@@ -144,16 +144,16 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6">
-			<h1>Create a Playlist</h1>
+			<h3>Playlist Name</h3>
 			<br><br>
-			<%= form_for [@user, @playlist], :class => 'form-horizontal' do |f| %>
+			<%= form_for [current_user, Playlist.new], :class => 'form-horizontal' do |f| %>
 				 <div class="form-group float-label-control">
                         <label for="">Name</label>
                         <%= f.text_field :name, :class => 'form-control' %>
                     </div>
   			<div class="actions">
 				<br><br>
-				<%= f.submit 'Create', :class => 'btn btn-info' %>
+				<%= f.submit 'Create', :class => 'btn btn-info form-control' %>
 
 			</div> <!-- actions -->
 			<% end %>

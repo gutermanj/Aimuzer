@@ -6,6 +6,8 @@ class Track < ActiveRecord::Base
 
 	has_many :playlists, through: :playlist_tracks
 
+	has_many :tags, through: :tagged_tracks
+
 	mount_uploader :track, TrackUploader
 
 	validates :title, presence: true

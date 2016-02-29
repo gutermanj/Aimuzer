@@ -19,6 +19,7 @@ gem 'zip-codes'
 gem 'envyable'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'will_paginate', '~> 3.0.6'
+gem 'social-share-button'
 
 
 

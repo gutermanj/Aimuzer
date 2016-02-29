@@ -44,7 +44,7 @@ a:hover:after {
 <!-- DYNAMIC PROFILE -->
 		<div class="row first-row">
 			<div class="col-lg-2">	
-				<div class="avatar-border box-shadow--2dp">	
+				<div class="avatar-border box-shadow--2dp" data-user-id="<%= @user.id %>">	
 					
 
 					<%= image_tag @user.picture, :width => '150', :height => '150' %>
@@ -85,7 +85,7 @@ a:hover:after {
 					<% end %>
 					<% end %>
 					<div class="top-btns">
-					<%= link_to 'Playlists', root_path %>
+					<%= link_to 'Playlists', user_playlists_path(@user) %>
 					</div> <!-- top-btns -->
 					<div class="top-btns-middle">
 					<span>|</span>
@@ -131,7 +131,7 @@ a:hover:after {
 					<hr style="width: 100%; border-color: darkgray;">
 
 					<% @tracks.order("id DESC").first(3).each do |x| %>
-					<h4><%= link_to x.title, user_track_path(@user.id, x.id), :style => 'color: white;' %></h4>
+					<h4><%= link_to x.title, user_track_path(@user.id, x.id) %></h4>
 					<hr style="border-color: gray">
 
 				

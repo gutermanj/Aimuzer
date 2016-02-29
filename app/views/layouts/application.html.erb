@@ -54,7 +54,7 @@
       <ul class="nav navbar-nav">
         
         <% if current_user %>
-        <li class="<%= "active" if current_page?(current_user) %> profile-id" data-user-id="<%= @user.id %>"><%= link_to 'Profile', user_path(current_user) %></li>
+        <li class="<%= "active" if current_page?(current_user) %> profile-id"><%= link_to 'Profile', user_path(current_user) %></li>
         <% end %>
 
          <li class="<%= "active" if current_page?(root_path) %>"><%= link_to 'Discover', root_path %></li>
@@ -87,7 +87,7 @@
           <ul class="dropdown-menu">
             <% if current_user || current_user_sc %>
             <li><%= link_to 'Upload', new_user_track_path(current_user), :style => 'font-weight: bold;' %></li>
-            <li><%= link_to 'New Playlist', new_user_playlist_path(current_user) %></li>
+            <li><a href="#" data-toggle="modal" data-target="#playlist-modal">New Playlist</a></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
             <% end %>
@@ -112,7 +112,27 @@
 
 <!-- ___________________________NAV BAR__________________________ -->
 
+
+<div id="playlist-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">New Playlist</h4>
+      </div>
+      <div class="modal-body">
+        <% if current_user %>
+        <%= render 'playlists/new' %>
+        <% end %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <%= render partial: "layouts/flash_messages", flash: flash %> 
+
+
 
 
 

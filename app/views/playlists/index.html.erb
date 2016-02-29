@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6">
+			<h2>
+				<%= @user.name %>'s Playlists
+			</h2>
+
+			<hr class="dark-underline">
+			<br><br>
+
+			
+			<% @user.playlists.each do |x| %>
+
+			<h3><%= link_to x.name, user_playlist_path(x.user_id, x), :class => 'playlist-title' %></h3>
+				<% if x.tracks[0].nil? %>
+			<h5>No tracks in here... ¯\_(ツ)_/¯</h5>
+			<hr>
+				<% else %>
+			<ul>
+				<% tracknum = 0 %>
+				<% x.tracks.limit(2).each do |y| %>
+
+				<% tracknum = tracknum + 1 %>
+				<li class="playlist-list"><%= tracknum %> .  <%= link_to y.title, track_path(y), :class => 'playlist-track-item' %></li>
+				<% end %>
+			</ul>
+
+
+
+			<hr>
+				<% end %>
+				<% end %>
+
+		</div> <!-- col-sm-6 -->
+	</div> <!-- row -->
+</div> <!-- container -->

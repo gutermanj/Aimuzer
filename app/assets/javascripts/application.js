@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require social-share-button
 //= require_tree .
 
 $(".nav a").on("click", function(){
@@ -40,7 +41,7 @@ $(document).on('ready', function () {
 	});
 
 	$('.top-btns-2nd').delegate('.profile-link', 'click', function() {
-		var user_id = $('.profile-id').data("user-id");
+		var user_id = $('.avatar-border').data("user-id");
 		getProfile(user_id);
 	});
 
@@ -253,7 +254,8 @@ function showLikes(response) {
 	likes.forEach(function (likes) {
 		
 		var link = `
-			<a href="#" class="fa fa-long-arrow-left profile-link" data-user-id="${user_id_link}">Profile</a>
+			
+			
 			`
 		
 		var html = `

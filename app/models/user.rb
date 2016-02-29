@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  has_many :tags, through: :user_tag
+
 
   
   
@@ -110,6 +112,16 @@ class User < ActiveRecord::Base
      # @user.picture
   end
 
+  def name
+
+    if self.username
+      self.username
+    else
+      self.first_name
+    end
+  end
+
+
   def self.create_from_soundcloud(soundcloud_user, access_token)
    create! do |user|
     user.soundcloud_user_id = soundcloud_user["id"]
@@ -121,6 +133,13 @@ class User < ActiveRecord::Base
     end
 
   end
+
+    def self.search(query)
+    # where(:title, query) -> This would return an exact match of the query
+    where("username like ?", "%#{query}%")
+    end
+
+    
 
 
   private

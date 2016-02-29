@@ -17,7 +17,7 @@ resources :users do
       get :following, :followers
     end
 
-  resources :playlists, only: [:new, :create]
+  resources :playlists, only: [:new, :create, :show, :index]
   
 	# post 'tracks' => 'tracks#create'
   
