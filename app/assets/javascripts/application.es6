@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require social-share-button
 //= require_tree .
-//= require 'sprockets/es6'
 
 $(".nav a").on("click", function(){
    $(".nav").find(".active").removeClass("active");

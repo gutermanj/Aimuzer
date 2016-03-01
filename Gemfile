@@ -21,7 +21,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'will_paginate', '~> 3.0.6'
 gem 'social-share-button'
 gem 'sprockets', '>= 3.0.0'
-gem 'sprockets-es6'
+gem 'sprockets-es6', require: 'sprockets/es6'
 
 
 
