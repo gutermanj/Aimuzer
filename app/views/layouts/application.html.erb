@@ -57,7 +57,7 @@
         <li class="<%= "active" if current_page?(current_user) %> profile-id"><%= link_to 'Profile', user_path(current_user) %></li>
         <% end %>
 
-         <li class="<%= "active" if current_page?(root_path) %>"><%= link_to 'Discover', root_path %></li>
+         <li class="<%= "active" if current_page?(stream_path || root_path) %>"><%= link_to 'Discover', root_path %></li>
 
       </ul>
 

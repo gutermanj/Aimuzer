@@ -1,2 +1,69 @@
-<h1>Discover#index</h1>
-<p>Find me in app/views/discover/index.html.erb</p>
+<html>
+
+
+<style type="text/css">
+a {
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  position: relative;
+}
+
+a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+
+a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: -3px;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: black;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+a:hover:after { 
+  width: 100%; 
+  left: ; 
+}
+</style>
+
+<!-- ============ IF NO ONE IS SIGNED IN ===========-->
+
+
+	<body class="not-signed-in-body">
+		<div class="container not-signed-in-body">
+			<div class="row">
+				<div class="col-sm-6">
+					<span class="first-half">Aim</span><span class="second-half">uzer</span>
+					<br>
+						<span style="color: black;">Let's Discover, Together</span>
+							
+				</div> <!-- col-lg-6 -->
+
+				<div class="col-sm-6">
+							<div class="first-buttons">
+							<%= link_to 'Register', new_user_registration_path %>
+
+							<%= link_to 'Sign In', new_user_session_path, :style => 'margin-left: 25px; width: 90px;' %>
+							</div> <!-- first buttons -->
+				</div> <!-- col-sm-6 -->
+
+			</div> <!-- row -->
+							<hr style="border-color: #3B5998;">
+	<!-- ======== Top portion with log buttons and header =========-->
+
+		</div><!-- container not sign in body -->	
+
+	</body>
+
+</html>
+
+
