@@ -14,7 +14,7 @@ redirect_to client.authorize_url(:grant_type => 'authorization_code', :scope => 
 	  	# create client object with app credentials
 	client = Soundcloud.new(:client_id => ENV["SOUNDCLOUD_CLIENT_ID"],
 	                    :client_secret => ENV["SOUNDCLOUD_CLIENT_SECRET"],
-	                    :redirect_uri => "http://localhost:3000/soundcloud/connected")
+	                    :redirect_uri => "http://www.aimuzer.com/soundcloud/connected")
 	# exchange authorization code for access token
 	access_token = client.exchange_token(:code => params[:code])
 	client = Soundcloud.new(:access_token => access_token["access_token"])

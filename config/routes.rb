@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  
+   
+
+  root 'discover#index'
+
+  get 'discover/index'
+
+  get '/stream' => 'discover#stream'
+
   devise_for :users
 
 get '/soundcloud/connect',    :to => 'soundcloud#connect'
@@ -47,6 +54,5 @@ end
   
 
 
-  root 'welcome#index'
 
 end

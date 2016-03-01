@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   		@randfollowers = rand(1000)
 
-  		@track = Track.find_by(id: params[:idid])
+  		@track = Track.find_by(id: params[:id])
 
   		@tracks = @user.tracks
 
