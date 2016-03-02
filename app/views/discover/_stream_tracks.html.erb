@@ -9,6 +9,7 @@
 							<div class="row">
 								<div class="col-sm-10">
 						<h4><em><%= x.artist %></em></h4>
+						<%= render 'discover/tags' %>
 						<h3><%= link_to x.title, user_track_path(x.user_id, x.id), :style => 'color: black;' %></h3>
 						<br>
 						

@@ -123,6 +123,13 @@ $(window).scroll(function() {                  // assign scroll event listener
 
 });
 
+	$('.tag-btns').on('click', function() {
+		$(this).fadeOut("2000");
+		var potato = $(this).text();
+		console.log(potato + " added to tags.");
+	});
+
+
 
 }); // doc ready
 
