@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   # has_many :tracks, through: :playlists
 
+  # All the tracks in all my playlists (probably don't need this)
   has_many :playlist_tracks, through: :playlists
 
   has_many :playlists
@@ -22,8 +23,8 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  has_many :tags
-  has_many :user_tags, through: :tags
+  has_many :tags, through: :user_tags
+  has_many :user_tags
 
 
 
@@ -151,3 +152,37 @@ class User < ActiveRecord::Base
   end
 
 end
+
+
+
+
+
+# TODO
+# method for:
+#
+#  include tagged_tracks in the track search
+#      (this is here to prevent an error)
+#                |
+#                v
+# Track.joins(:tagged_tracks).where(tagged_tracks: { tag_id: user.tags })
+#                                          ^                ^
+#                                          |                |
+#                                  i want to specify         --------- find the tracks that have tag ids
+#                                  where conds.                        that match the user's tags
+#                                 on tagged_tracks
+#                                     fields
+
+
+
+# SQL:
+# ----
+#
+# SELECT "tracks".* FROM "tracks"
+#   INNER JOIN "tagged_tracks"
+#     ON "tagged_tracks"."track_id" = "tracks"."id"
+
+# WHERE "tagged_tracks"."tag_id" IN (
+#   SELECT "tags"."id" FROM "tags"
+#   INNER JOIN "user_tags" ON "tags"."id" = "user_tags"."tag_id"
+#   WHERE "user_tags"."user_id" = 1
+# )
