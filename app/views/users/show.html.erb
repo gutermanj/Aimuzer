@@ -6,7 +6,6 @@
 <style type="text/css">
 a {
   color: black;
- 
   text-decoration: none;
   letter-spacing: 0.1em;
   position: relative;
@@ -47,7 +46,7 @@ a:hover:after {
 				<div class="avatar-border box-shadow--2dp" data-user-id="<%= @user.id %>">	
 					
 
-					
+					<%= image_tag @user.picture, :width => '150', :height => '150' %>
 					
 
 				</div>
