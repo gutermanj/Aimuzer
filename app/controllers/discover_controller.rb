@@ -8,9 +8,7 @@ class DiscoverController < ApplicationController
   end
 
   def stream
-  	@tracks = Track.all
-
-
+  	@tracks = Track.joins(:tagged_tracks).where(tagged_tracks: { tag_id: current_user.tags })
   end
 
 end

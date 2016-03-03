@@ -14,6 +14,8 @@ get 'soundcloud/connected', to: 'soundcloud#connected'
 get 'logout', to: 'soundcloud#destroy', as: 'logout'
 get '/soundcloud/new' => 'soundcloud#new'
 post '/users/soundcloud' => 'soundcloud#save_soundcloud_user'
+
+post 'users/:id/tag/:id' => 'users#add_tag'
   
 get 'users/:id/likes' => 'tracks#likes'
 

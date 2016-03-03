@@ -1,7 +1,8 @@
 		<div class="tag-section">
-			<button class="btn btn-default btn-xs tag-btns btn-space">Light Vocals</button>
-			<button class="btn btn-default btn-xs tag-btns btn-space">Emotional</button>
-			<button class="btn btn-default btn-xs tag-btns btn-space">Dream-scape</button>
-			<button class="btn btn-default btn-xs tag-btns">Inaudible</button>
+				<% track.tags.all do |y| %>
+					<button class="btn btn-default btn-xs tag-btns btn-space" type="submit" data-id="<%= y.id %>"><%= y.characteristic %></button>
+			<% end %>
+			
+			
 
 		</div>

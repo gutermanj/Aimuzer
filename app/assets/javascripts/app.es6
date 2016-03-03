@@ -69,6 +69,14 @@ $(document).on('ready', function () {
 		getLikes(user_id);
 	});
 
+	$('.tag-btns').on('click', function() {
+		var userId = $(this).data('user');
+		var tagId = $(this).data('id');
+		addTag(tagId, userId);
+		console.log(tagId);
+	});
+
+
 	$('.js-tag-tracks').on('click', function() {
 		
 	});
@@ -473,6 +481,53 @@ function showProfile(response) {
 
 		$('.main-container').html(html);
 }
+
+
+function addTag(tagId, userId) {
+	console.log('addTag was called!');
+
+	$.ajax({
+
+		url: `/users/${userId}/tag/${tagId}/`,
+
+		type: 'POST',
+
+		success: function(response) {
+			console.log(response);
+		},
+
+		error: function() {
+			console.log('Something went wrong.');
+		}
+
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

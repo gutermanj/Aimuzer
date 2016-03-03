@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
+	skip_before_filter :verify_authenticity_token
 
   	def show
   		@user = User.find_by(id: params[:id])
+  		@tag = Tag.find_by(id: params[:id])
+  		@users_tag = current_user.user_tags.find_by(tag_id: @tag.id)
+
+
   		@zipcode = ZipCodes.identify(@user.zipcode.to_s)
   		@followers = @user.followers.all
 
@@ -11,7 +16,7 @@ class UsersController < ApplicationController
 
   		@track = Track.find_by(id: params[:id])
 
-  		@tracks = @user.tracks
+  		@tracks = @user.tracks.all
 
   		@data_id = 0
 
@@ -41,6 +46,33 @@ class UsersController < ApplicationController
 	def destroy
 		@user.avatar = nil
 		@user.save
+	end
+
+	def add_tag
+		@user = current_user
+		@tag = Tag.find_by(id: params[:id])
+		@users_tag = @user.user_tags.find_by(tag_id: @tag.id)
+
+		if @users_tag.nil?
+			@last_tag = @user.user_tags.create(
+							:user_id => @user.id,
+							:tag => @tag
+							)
+
+			render json: @last_tag
+
+		else
+			puts "=========================="
+			puts @users_user_tag
+
+			@users_tag.increment(:weight)
+			@users_tag.save
+
+		end
+
+			render json: @users_user_tag
+		
+
 	end
 
 	private
