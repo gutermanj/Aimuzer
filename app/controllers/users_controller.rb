@@ -4,9 +4,7 @@ class UsersController < ApplicationController
   	def show
   		@user = User.find_by(id: params[:id])
   		@tag = Tag.find_by(id: params[:id])
-  		if current_user.user_tags.all
-  		@users_tag = current_user.user_tags.find_by(tag_id: @tag.id)
-  		end
+  		
 
 
   		@zipcode = ZipCodes.identify(@user.zipcode.to_s)
@@ -21,7 +19,9 @@ class UsersController < ApplicationController
   		@tracks = @user.tracks.all
 
   		@data_id = 0
-
+  		if @tag
+		@users_tag = current_user.user_tags.find_by(tag_id: @tag.id)
+		end
 	end
 
 	def new
