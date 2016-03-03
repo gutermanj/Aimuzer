@@ -47,7 +47,7 @@ a:hover:after {
 				<div class="avatar-border box-shadow--2dp" data-user-id="<%= @user.id %>">	
 					
 
-					<%= image_tag @user.picture, :width => '150', :height => '150' %>
+					
 					
 
 				</div>
@@ -78,7 +78,7 @@ a:hover:after {
 
 					<i class="fa fa-heart-o fav-genre-up"></i><a href="#"><span>  Favorite genre</span></a><br>
 
-					<i class="fa fa-tags"></i> <span>Total Tags | </span>
+					<i class="fa fa-tags"></i> <span>Total Tags | <%= @user.user_tags.length %></span>
 					<% if current_user %>
 					<% if current_user.id != @user.id %>
 					<%= render 'follow_form' if current_user %>
