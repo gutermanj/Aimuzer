@@ -78,7 +78,7 @@ a:hover:after {
 
 					<i class="fa fa-heart-o fav-genre-up"></i><a href="#"><span>  Favorite genre</span></a><br>
 
-					<i class="fa fa-tags"></i> <span>Total Tags | <%= @user.user_tags.length %></span>
+					<i class="fa fa-tags"></i> <span>Total Tags | </span>
 					<% if current_user %>
 					<% if current_user.id != @user.id %>
 					<%= render 'follow_form' if current_user %>
@@ -115,7 +115,7 @@ a:hover:after {
 
 			<div class="col-sm-8 gonna-put-it-on-top">
 					
-			
+				<%= render 'users/tracks' %> <!-- USERS PROFILE TRACKS -->
 
 			</div> <!-- col-sm-8 -->
 
