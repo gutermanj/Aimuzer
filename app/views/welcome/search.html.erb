@@ -25,9 +25,13 @@
 				<% end %>
 
 				<% @user_query.each do |x| %>
-					<h1><%= x.first_name %></h1>
-					<h1><%= x.username %></h1>
-					<% end %>
+				<% if x.first_name %>
+					<h2><%= link_to x.first_name, user_path(x.id) %></h2>
+				<% else %>
+					<h2><%= link_to x.username, user_path(x.id) %></h2>
+				<% end %>
+					
+				<% end %>
 				</div>
 
 
