@@ -132,7 +132,8 @@ $(window).scroll(function() {                  // assign scroll event listener
 });
 
 	$('.tag-btns').on('click', function() {
-		$(this).fadeOut("2000");
+		$(this).removeClass('tag-btns');
+		$(this).addClass('tag-btns-disabled');
 		var potato = $(this).text();
 		console.log(potato + " added to tags.");
 	});
@@ -211,6 +212,7 @@ function getFollowing(user_id) {
 function showFollowing(response) {
 	var following = response
 	following.forEach(function (following) {
+
 		var html = `
 			<div class="follower-item row">
 		<div class="col-sm-3">
