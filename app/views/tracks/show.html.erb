@@ -21,6 +21,7 @@
 							<div class="col-sm-2">
 								<div class="song-btns">
 
+								<% if current_user %>
 									<% if current_user.voted_for? @track %>
 									<span data-id="<%= @track.id %>">
 									<i class="fa fa-heart js-unlike-track" style="color: #880000" data-id="<%= @track.id %>" data-user-id="<%= current_user.id %>"></i>
@@ -30,6 +31,7 @@
 									<i class="fa fa-heart-o js-like-track" data-id="<%= @track.id %>" data-user-id="<%= current_user.id %>"></i>
 									</span>
 									
+								<% end %>
 								<% end %>
 								
 								<i class="fa fa-share song-btn-space"></i>
