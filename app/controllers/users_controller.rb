@@ -19,9 +19,7 @@ class UsersController < ApplicationController
   		@tracks = @user.tracks.all
 
   		@data_id = 0
-  		if @tag
-		@users_tag = current_user.user_tags.find_by(tag_id: @tag.id)
-		end
+  		
 	end
 
 	def new
