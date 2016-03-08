@@ -1,28 +1,15 @@
-== README
+= Aimuzer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Final Project | Music Platform Powered By Taste Recognition
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+=== Framework & Technologies
+Rails 4, PostgreSQL, JavaScript, Ajax, CSS3, HTML5, SoundCloud API
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+=====Aimuzer uses a query system to use tags (Think of tags like hashtags that a user clicks on attached to a track)
+
+=====The database is queried to find similar tracks based on tags selected
+
+
+User Ability | Upload tracks, like tracks, create playlists, share tracks, follow users
